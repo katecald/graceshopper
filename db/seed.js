@@ -32,32 +32,38 @@ const things = seed(Thing, {
   santa: {
     name: 'Santa Claus',
     price: 9999,
-    description: 'We will do your Christmas shopping, wrap each present neatly, and write out heartfelt, personalized Christmas cards'
+    description: 'We will do your Christmas shopping, wrap each present neatly, and write out heartfelt, personalized Christmas cards',
+    imageURL: 'images/santa.jpeg'
   },
   fairy: {
     name: 'Tooth Fairy',
     price: 999,
-    description: 'We will retrieve a crisp, new five dollar bill from the bank, place the bill under your child\'s pillow, and dispose of the tooth in an eco-friendly manner'
+    description: 'We will retrieve a crisp, new five dollar bill from the bank, place the bill under your child\'s pillow, and dispose of the tooth in an eco-friendly manner',
+    imageURL: 'images/toothfairy.jpeg'
   },
   bunny: {
     name: 'Easter Bunny',
     price: 4999,
-    description: 'We will purchase an appropriate amount of pastel candy, place the candy in plastic eggs, and hide the eggs around your house'
+    description: 'We will purchase an appropriate amount of pastel candy, place the candy in plastic eggs, and hide the eggs around your house',
+    imageURL: 'images/easterbunny.jpeg'
   },
   krampus: {
     name: 'Krampus',
     price: 19999,
-    description: 'We will don half-goat/half-demon attire, follow your child around, and repeatedly frighten them for a period of 24 hours'
+    description: 'We will don half-goat/half-demon attire, follow your child around, and repeatedly frighten them for a period of 24 hours',
+    imageURL: 'images/krampus.jpeg'
   },
   cupid: {
     name: 'Cupid',
     price: 5499,
-    description: 'We will purchase the trendiest pack valentines from CVS, tape each one to a small box of candy hearts, and write out heartfelt, personalized messages to each child in the class'
+    description: 'We will purchase the trendiest pack valentines from CVS, tape each one to a small box of candy hearts, and write out heartfelt, personalized messages to each child in the class',
+    imageURL: 'images/cupid.jpeg'
   },
   greatpumpkin: {
     name: 'Great Pumpkin',
     price: 4499,
-    description: 'We will hand sew the perfect costume for your child, purchase the exact right amount of candy, and answer your door when the trick-or-treaters arrive'
+    description: 'We will hand sew the perfect costume for your child, purchase the exact right amount of candy, and answer your door when the trick-or-treaters arrive',
+    imageURL: 'images/greatpumpkin.jpeg'
   }
 })
 

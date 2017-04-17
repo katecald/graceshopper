@@ -10,7 +10,7 @@ function seedEverything() {
     things: things(),
   }
 
-  seeded.favorites = favorites(seeded)
+ // seeded.favorites = favorites(seeded)
 
   return Promise.props(seeded)
 }
@@ -61,7 +61,7 @@ const things = seed(Thing, {
   }
 })
 
-const favorites = seed(Favorite,
+//const favorites = seed(Favorite,
   // We're specifying a function here, rather than just a rows object.
   // Using a function lets us receive the previously-seeded rows (the seed
   // function does this wiring for us).
@@ -162,4 +162,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, { users, things, favorites })
+module.exports = Object.assign(seed, { users, things })

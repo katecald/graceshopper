@@ -1,8 +1,8 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Promise} = db
-    , {mapValues} = require('lodash')
+  , { User, Thing, Favorite, Promise } = db
+  , { mapValues } = require('lodash')
 
 function seedEverything() {
   const seeded = {
@@ -29,9 +29,36 @@ const users = seed(User, {
 })
 
 const things = seed(Thing, {
-  surfing: {name: 'surfing'},
-  smiting: {name: 'smiting'},
-  puppies: {name: 'puppies'},
+  santa: {
+    name: 'Santa Claus',
+    price: 9999,
+    description: 'We will do your Christmas shopping, wrap each present neatly, and write out heartfelt, personalized Christmas cards'
+  },
+  fairy: {
+    name: 'Tooth Fairy',
+    price: 999,
+    description: 'We will retrieve a crisp, new five dollar bill from the bank, place the bill under your child\'s pillow, and dispose of the tooth in an eco-friendly manner'
+  },
+  bunny: {
+    name: 'Easter Bunny',
+    price: 4999,
+    description: 'We will purchase an appropriate amount of pastel candy, place the candy in plastic eggs, and hide the eggs around your house'
+  },
+  krampus: {
+    name: 'Krampus',
+    price: 19999,
+    description: 'We will don half-goat/half-demon attire, follow your child around, and repeatedly frighten them for a period of 24 hours'
+  },
+  cupid: {
+    name: 'Cupid',
+    price: 5499,
+    description: 'We will purchase the trendiest pack valentines from CVS, tape each one to a small box of candy hearts, and write out heartfelt, personalized messages to each child in the class'
+  },
+  greatpumpkin: {
+    name: 'Great Pumpkin',
+    price: 4499,
+    description: 'We will hand sew the perfect costume for your child, purchase the exact right amount of candy, and answer your door when the trick-or-treaters arrive'
+  }
 })
 
 const favorites = seed(Favorite,
@@ -42,34 +69,34 @@ const favorites = seed(Favorite,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({users, things}) => ({
+  // ({ users, things }) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
-    'obama loves surfing': {
-      user_id: users.barack.id,    // users.barack is an instance of the User model
-                                   // that we created in the user seed above.
-                                   // The seed function wires the promises so that it'll
-                                   // have been created already.
-      thing_id: things.surfing.id  // Same thing for things.
-    },
-    'god is into smiting': {
-      user_id: users.god.id,
-      thing_id: things.smiting.id
-    },
-    'obama loves puppies': {
-      user_id: users.barack.id,
-      thing_id: things.puppies.id
-    },
-    'god loves puppies': {
-      user_id: users.god.id,
-      thing_id: things.puppies.id
-    },
-  })
-)
+    // 'obama loves surfing': {
+    //   user_id: users.barack.id,    // users.barack is an instance of the User model
+      // that we created in the user seed above.
+      // The seed function wires the promises so that it'll
+      // have been created already.
+//       thing_id: things.surfing.id  // Same thing for things.
+//     },
+//     'god is into smiting': {
+//       user_id: users.god.id,
+//       thing_id: things.smiting.id
+//     },
+//     'obama loves puppies': {
+//       user_id: users.barack.id,
+//       thing_id: things.puppies.id
+//     },
+//     'god loves puppies': {
+//       user_id: users.god.id,
+//       thing_id: things.puppies.id
+//     },
+//   })
+// )
 
 if (module === require.main) {
   db.didSync
-    .then(() => db.sync({force: true}))
+    .then(() => db.sync({ force: true }))
     .then(seedEverything)
     .finally(() => process.exit(0))
 }
@@ -98,7 +125,7 @@ class BadRow extends Error {
 // The function form can be used to initialize rows that reference
 // other models.
 function seed(Model, rows) {
-  return (others={}) => {
+  return (others = {}) => {
     if (typeof rows === 'function') {
       rows = Promise.props(
         mapValues(others,
@@ -121,10 +148,10 @@ function seed(Model, rows) {
                 )
             }
           }).reduce(
-            (all, one) => Object.assign({}, all, {[one.key]: one.value}),
-            {}
+          (all, one) => Object.assign({}, all, { [one.key]: one.value }),
+          {}
           )
-        )
+      )
       )
       .then(seeded => {
         console.log(`Seeded ${Object.keys(seeded).length} ${Model.name} OK`)
@@ -135,4 +162,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, favorites})
+module.exports = Object.assign(seed, { users, things, favorites })

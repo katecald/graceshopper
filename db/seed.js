@@ -69,30 +69,30 @@ const favorites = seed(Favorite,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({ users, things }) => ({
+  // ({ users, things }) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
-    'obama loves surfing': {
-      user_id: users.barack.id,    // users.barack is an instance of the User model
+    // 'obama loves surfing': {
+    //   user_id: users.barack.id,    // users.barack is an instance of the User model
       // that we created in the user seed above.
       // The seed function wires the promises so that it'll
       // have been created already.
-      thing_id: things.surfing.id  // Same thing for things.
-    },
-    'god is into smiting': {
-      user_id: users.god.id,
-      thing_id: things.smiting.id
-    },
-    'obama loves puppies': {
-      user_id: users.barack.id,
-      thing_id: things.puppies.id
-    },
-    'god loves puppies': {
-      user_id: users.god.id,
-      thing_id: things.puppies.id
-    },
-  })
-)
+//       thing_id: things.surfing.id  // Same thing for things.
+//     },
+//     'god is into smiting': {
+//       user_id: users.god.id,
+//       thing_id: things.smiting.id
+//     },
+//     'obama loves puppies': {
+//       user_id: users.barack.id,
+//       thing_id: things.puppies.id
+//     },
+//     'god loves puppies': {
+//       user_id: users.god.id,
+//       thing_id: things.puppies.id
+//     },
+//   })
+// )
 
 if (module === require.main) {
   db.didSync

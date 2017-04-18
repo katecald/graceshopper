@@ -12,6 +12,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
 import {loadProducts} from 'APP/app/reducers/ProductsReducer'
+import {loadProduct} from 'APP/app/reducers/ProductReducer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -29,13 +30,18 @@ const onProductsEnter = () => {
   store.dispatch(loadProducts())
 }
 
+const onProductEnter = () => {
+  // store.dispatch(setProduct())
+  store.dispatch(loadProduct())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" >
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
-        <Route path='/product' component={Product} />
+        <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

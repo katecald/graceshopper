@@ -1,23 +1,38 @@
+import axios from 'axios'
+
 const initialState = {
-  currentProduct: {name: 'santa', imageURL: 'http://img.clipartall.com/anime-santa-claus-clipart-clipart-santa-claus-3500_3282.png', price: 10000, description: 'santa!'}
+  currentProduct: {}
 }
 
-const productReducer = (state = initialState, action) => {
-  return state
-}
+// CONSTANTS
+const LOAD_PRODUCT = 'LOAD_PRODUCT'
 
-export default productReducer
-
-const getProduct = (product) => {
-  return {
-    type: 'LOAD_PRODUCT',
-    payload: product
+// ACTIONS
+export const loadProduct = (id) => {
+  return dispatch => {
+    axios.get(`/api/products/${id}`)
+    .then(res => dispatch(getProduct(res)))
   }
 }
 
-// export const loadProduct = () => {
-//   return dispatch => {
-//     axios.get('/api/products')
-//     .then(res => dispatch(getProducts(res)))
-//   }
-// }
+const getProduct = (res) => {
+  return {
+    type: LOAD_PRODUCT,
+    payload: res.data
+  }
+}
+
+// REDUCER
+const productReducer = (state = initialState, action) => {
+  const newState = {...state}
+  switch (action.type) {
+    case LOAD_PRODUCT:
+      newState.currentProduct = action.payload
+      break
+    default:
+      return state
+  }
+  return newState
+}
+
+export default productReducer

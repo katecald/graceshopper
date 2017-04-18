@@ -1,8 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router'
 import {connect} from 'react-redux'
 
 const Products = (props) => {
-  console.log(props)
   return (
     <div>
       <div>
@@ -13,7 +13,8 @@ const Products = (props) => {
             {
               props.products.products.map(product => {
                 return (
-                  <div key={product.id} className='.col-md-4' >
+                  <div key={product.id} className='.col-md-4'>
+                  <Link to={`/products/${product.id}`}>
                     <img src={product.imageURL} />
                     <h1>
                       {product.name}
@@ -21,9 +22,13 @@ const Products = (props) => {
                     <h3>
                       $ {product.price/100}
                     </h3>
+                  </Link>
+                  <button>
+                    Add To Cart
+                  </button>
                   </div>
                 )
-                })
+              })
             }
       </div>
   )
@@ -32,5 +37,3 @@ const Products = (props) => {
 const mapState = ({products}) => ({products})
 
 export default connect(mapState, null)(Products)
-
-

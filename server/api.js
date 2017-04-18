@@ -6,12 +6,15 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
-
-api.get('/products', (req, res, next) => {
+  .get('/products', (req, res, next) => {
     Thing.findAll({})
     .then(products => res.send(products))
     .catch(next)
-    //res.send("HELLOOOOOOO")
+  })
+  .get('/products/:id', (req, res, next) => {
+    Thing.findById(req.params.id)
+    .then(product => res.send(product))
+    .catch(next)
   })
 
 // No routes matched? 404.

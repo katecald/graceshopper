@@ -5,6 +5,7 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
+import AppContainer from './components/AppContainer'
 import Products from './components/Products'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
@@ -32,7 +33,7 @@ const onProductsEnter = () => {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" >
+      <Route path="/" component={AppContainer}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
       </Route>

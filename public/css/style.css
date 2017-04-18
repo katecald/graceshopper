@@ -1,3 +1,7 @@
 .navbar-brand {
     /*font-size: 600%;*/
 }
+
+#page-content {
+  margin-top: 50px;
+}

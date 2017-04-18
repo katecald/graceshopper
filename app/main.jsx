@@ -5,6 +5,7 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
+import AppContainer from './components/AppContainer'
 import Products from './components/Products'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
@@ -26,11 +27,9 @@ const ExampleApp = connect(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/navbar" component={Navbar} />
-      <Route path="/" component={Products}>
-                
-        <Route path="/products" component={Products} />
-        <IndexRedirect to="/products" />
+      <Route path="/" component={AppContainer}>
+        <Route path="products" component={Products} />
+        <Route path="login" component={Login} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

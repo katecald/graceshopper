@@ -1,3 +1,9 @@
-#page-content {
+.navbar-brand {
+    /*font-size: 600%;*/
+}
+
+.product-img {
+  width: 200px;
+  height: 200px;
   margin-top: 50px;
 }

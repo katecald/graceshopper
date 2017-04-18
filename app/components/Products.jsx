@@ -13,13 +13,13 @@ const Products = (props) => {
             {
               props.products.products.map(product => {
                 return (
-                  <div key={product.id} className='.col-md-4' >
-                    <img src={product.imageURL} />
+                  <div key={product.id} className='col-md-4' >
+                    <img src={product.imageURL} className='product-img' />
                     <h1>
                       {product.name}
                     </h1>
                     <h3>
-                      $ {product.price/100}
+                      ${product.price/100}
                     </h3>
                   </div>
                 )

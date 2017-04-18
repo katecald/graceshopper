@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar'
-import Products from './Products'
 
 export default class AppContainer extends Component {
 

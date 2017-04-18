@@ -1,22 +1,22 @@
 import React from 'react'
 
 const Navbar = ({ user, logout }) => (
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
 
-            <div class="navbar-header">
+            <div className="navbar-header">
 
-                <a class="navbar-brand" href="#">Brand</a>
+                <a className="navbar-brand" href="#">Holiday Helper</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav navbar-left">
+                    <li className="active"><a href="#">Log In <span className="sr-only">(current)</span></a></li>
+                    <li><a href="#">Sign Up</a></li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
+                <ul className="nav navbar-nav navbar-right">
+                    <li><a href="#">Cart</a></li>
                 </ul>
             </div>
         </div>

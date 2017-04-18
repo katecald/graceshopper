@@ -1,7 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-//import {loadProducts} from 'APP/app/reducers/ProductsReducer'
-
 
 const Products = (props) => {
   console.log(props)
@@ -11,12 +9,12 @@ const Products = (props) => {
           <h1>Holiday Helper</h1>
           <h3>Because holidays don't need to be awful.</h3>
 
-          </div> 
+          </div>
             {
               props.products.products.map(product => {
                 return (
-                  <div key={product.id}>
-                    <img key={product.id} src={product.imageURL} />
+                  <div key={product.id} className='.col-md-4' >
+                    <img src={product.imageURL} />
                     <h1>
                       {product.name}
                     </h1>

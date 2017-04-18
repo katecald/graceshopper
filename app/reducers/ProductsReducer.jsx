@@ -1,37 +1,34 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const initialState = {
-    products: [{name: "blah", imageURL: 'whatever', price: 10000}]
+  products: [{name: 'blah', imageURL: 'whatever', price: 10000}]
 }
 
-//CONSTANTS
-export const LOAD_PRODUCTS = "LOAD_PRODUCTS"
+// CONSTANTS
+export const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 
 const getProducts = (res) => {
-    return {
+  return {
     type: LOAD_PRODUCTS,
     payload: res.data
-    }
+  }
 }
 
-
-//ACTIONS
+// ACTIONS
 export const loadProducts = () => {
-    return dispatch => {
-        axios.get('/api/products')
-        .then(res => dispatch(getProducts(res)))
-}
+  return dispatch => {
+    axios.get('/api/products')
+    .then(res => dispatch(getProducts(res)))
+  }
 }
 
 const productsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOAD_PRODUCTS:
-            console.log("SJDKHKSDJH", action)
-            //let newProducts = state.products.concat(action.payload)
-            //console.log("NEW PRODUCTS", newProducts)
-            return { ...state, products: action.payload }
-        default: return state
-    }
+  switch (action.type) {
+    case LOAD_PRODUCTS:
+      console.log('ACTION PAYLOAD IN REDUCER', action.payload)
+      return { ...state, products: action.payload }
+    default: return state
+  }
 }
 
 export default productsReducer

@@ -16,6 +16,7 @@ const app = require('APP')
       OAuth: require('./oauth'),
       User: require('./user'),
       Thing: require('./thing'),
+      Order: require('./order'),
       Favorite: require('./favorite'),
       // ---------- Add new models here ----------
     }

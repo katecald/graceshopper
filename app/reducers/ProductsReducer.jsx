@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const initialState = {
-  products: [{name: 'blah', imageURL: 'whatever', price: 10000}]
+  products: []
 }
 
 // CONSTANTS

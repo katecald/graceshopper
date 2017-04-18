@@ -6,6 +6,7 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import Products from './components/Products'
+import Product from './components/Product'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
@@ -34,6 +35,7 @@ render(
       <Route path="/" component={Products} onEnter={onProductsEnter}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
+        <Route path='/product' component={Product} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

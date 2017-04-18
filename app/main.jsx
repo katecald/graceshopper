@@ -12,6 +12,8 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
+import {loadProducts} from 'APP/app/reducers/ProductsReducer'
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 )(
@@ -24,12 +26,16 @@ const ExampleApp = connect(
     </div>
 )
 
+const onProductsEnter = () => {
+  store.dispatch(loadProducts())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
-        <Route path="products" component={Products} />
         <IndexRedirect to="/products" />
+        <Route path="/products" component={Products} onEnter={onProductsEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

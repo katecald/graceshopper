@@ -7,6 +7,7 @@ const initialState = {
 // CONSTANTS
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 
+// ACTIONS
 const getProducts = (res) => {
   return {
     type: LOAD_PRODUCTS,
@@ -14,7 +15,6 @@ const getProducts = (res) => {
   }
 }
 
-// ACTIONS
 export const loadProducts = () => {
   return dispatch => {
     axios.get('/api/products')
@@ -22,13 +22,16 @@ export const loadProducts = () => {
   }
 }
 
+// REDUCER
 const productsReducer = (state = initialState, action) => {
+  const newState = {...state}
   switch (action.type) {
     case LOAD_PRODUCTS:
-      console.log('ACTION PAYLOAD IN REDUCER', action.payload)
-      return { ...state, products: action.payload }
+      newState.products = action.payload
+      break
     default: return state
   }
+  return newState
 }
 
 export default productsReducer

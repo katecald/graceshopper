@@ -8,11 +8,10 @@ api
   .use('/users', require('./users'))
 
 api.get('/products', (req, res, next) => {
-    Thing.findAll({})
+  Thing.findAll({})
     .then(products => res.send(products))
     .catch(next)
-    //res.send("HELLOOOOOOO")
-  })
+})
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

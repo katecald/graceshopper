@@ -26,7 +26,6 @@ const ExampleApp = connect(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/navbar" component={Navbar} />
       <Route path="/" component={Products}>       
         <Route path="/products" component={Products} />
         <IndexRedirect to="/products" />

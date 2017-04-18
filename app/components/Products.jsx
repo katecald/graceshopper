@@ -13,18 +13,16 @@ const Products = (props) => {
 
           </div> 
             {
-              props.products.map(product => {
-                (
-                  <div>
-                  <div>
-                    <img src={product.imageURL} />
+              props.products.products.map(product => {
+                return (
+                  <div key={product.id}>
+                    <img key={product.id} src={product.imageURL} />
                     <h1>
                       {product.name}
                     </h1>
                     <h3>
                       $ {product.price/100}
                     </h3>
-                  </div>
                   </div>
                 )
                 })

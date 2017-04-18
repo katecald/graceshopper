@@ -29,7 +29,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
         <Route path="products" component={Products} />
-        <Route path="login" component={Login} />
+        <IndexRedirect to="/products" />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

@@ -4,9 +4,6 @@ import Products from './Products'
 
 export default class AppContainer extends Component {
 
-  // const toPass = {}
-
-
   render() {
     return (
       <div className="container-fluid">

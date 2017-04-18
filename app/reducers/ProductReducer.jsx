@@ -7,12 +7,13 @@ const productReducer = (state = initialState, action) => {
 }
 
 export default productReducer
-// const getProduct = (res) => {
-//   return {
-//     type: LOAD_PRODUCT,
-//     payload: res.data
-//   }
-// }
+
+const getProduct = (product) => {
+  return {
+    type: 'LOAD_PRODUCT',
+    payload: product
+  }
+}
 
 // export const loadProduct = () => {
 //   return dispatch => {

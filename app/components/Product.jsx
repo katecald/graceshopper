@@ -2,19 +2,23 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const Product = (props) => {
-  console.log('PROPS', props)
+  const name='santa', imageURL='http://img.clipartall.com/anime-santa-claus-clipart-clipart-santa-claus-3500_3282.png', price=10000, description='santa!', style={height: 800, width: 800}
+  // console.log('PROPS', props)
   return (
     <div>
-      <img src={props.currentProduct.imageURL} />
+      <img src={imageURL} style={style} />
         <h1>
-          {props.currentProduct.name}
+          {name}
         </h1>
         <h3>
-          ${props.currentProduct.price/100}
+          ${price/100}
         </h3>
         <h4>
-          {props.currentProduct.description}
+          {description}
         </h4>
+        <button>
+          Add To Cart
+        </button>
      </div>
   )
 }

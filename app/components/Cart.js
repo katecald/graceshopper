@@ -23,6 +23,7 @@ const Cart = () => (
                 </tr>
             </tbody>
         </table>
+        <button className='btn btn-success'>Checkout</button>
     </div>
 )
 

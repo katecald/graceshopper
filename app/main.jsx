@@ -8,6 +8,7 @@ import store from './store'
 import AppContainer from './components/AppContainer'
 import Products from './components/Products'
 import Navbar from './components/Navbar'
+import Checkout from './components/Checkout'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
@@ -36,6 +37,7 @@ render(
       <Route path="/" component={AppContainer}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
+        <Route path="/checkout" component={Checkout} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

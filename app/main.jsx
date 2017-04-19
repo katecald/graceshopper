@@ -9,6 +9,7 @@ import AppContainer from './components/AppContainer'
 import Products from './components/Products'
 import Product from './components/Product'
 import Navbar from './components/Navbar'
+import Checkout from './components/Checkout'
 import Cart from './components/Cart'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
@@ -44,6 +45,7 @@ render(
       <Route path="/" component={AppContainer}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
+        <Route path="/checkout" component={Checkout} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/cart" component={Cart} />
       </Route>

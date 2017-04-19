@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+// need to set currentProduct on state when a product is selected in main view
 const Product = (props) => {
   console.log('PROPS', props)
   return (

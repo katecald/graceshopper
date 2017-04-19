@@ -8,7 +8,6 @@ const Products = (props) => {
       <div>
         <h1>Holiday Helper</h1>
         <h3>Because holidays don't need to be awful.</h3>
-
       </div>
       {
         props.products.map(product => {
@@ -23,7 +22,7 @@ const Products = (props) => {
                   ${product.price / 100}
                 </h3>
               </Link>
-              <button value={product.id} onClick={props.handleClick}>
+              <button className='btn btn-info' value={product.id} onClick={props.handleClick}>
                 Add To Cart
                   </button>
                   <label htmlFor="quantity">Qty</label>

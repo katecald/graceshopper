@@ -16,9 +16,14 @@ api
     .then(product => res.send(product))
     .catch(next)
   })
+  .get('addToCart', (req, res, next) => {
+    Thing.findById(req.body.productId)
+    // below will overwrite/ not handle multiples
+    .then(product => req.session.cart = {...req.session.cart, {[product]: (product || 0) + 1}})
+    .then(() => res.send(req.session.cart))
+    .catch(next)
+  })
 
-api.get('addToCart', (req, res, next) => {
-  Thing.
 })
 
 // No routes matched? 404.

@@ -8,18 +8,17 @@ const initialState = {
 export const CLICK_ACTION = "CLICK_ACTION" 
 
 // ACTIONS
-const getProduct = (res) => {
+const getCart = (res) => {
   return {
     type: CLICK_ACTION,
     payload: res.data
   }
 }
 
-export const clickAction = () => {
+export const clickAction = (productId) => {
   return dispatch => {
-    axios.get('/api/addToCart')
-    .then(res => dispatch(getProduct(res))
-    })
+    axios.get('/api/addToCart', productId)
+    .then(res => dispatch(getCart(res)))
   }
 }
       

@@ -23,7 +23,7 @@ const Products = (props) => {
                       ${product.price/100}
                     </h3>
                   </Link>
-                  <button>
+                  <button value={product.id}>
                     Add To Cart
                   </button>
                   </div>

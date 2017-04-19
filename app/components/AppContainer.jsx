@@ -11,10 +11,9 @@ class AppContainer extends Component {
     this.handleCartClick = this.handleCartClick.bind(this)
   }
 
-  handleCartClick() {
-    props.clickAction()
+  handleClick(e) {
+    props.clickAction(e.target.value)
   }
-
 
   render() {
     return (

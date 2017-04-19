@@ -13,5 +13,9 @@ api.get('/products', (req, res, next) => {
     .catch(next)
 })
 
+api.get('addToCart', (req, res, next) => {
+  Thing.
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

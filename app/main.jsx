@@ -33,9 +33,8 @@ const onProductsEnter = () => {
   store.dispatch(loadProducts())
 }
 
-const onProductEnter = () => {
-  // store.dispatch(setProduct())
-  store.dispatch(loadProduct())
+const onProductEnter = (nextState) => {
+  store.dispatch(loadProduct(nextState.params.id))
 }
 
 render(
@@ -43,8 +42,8 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
         <IndexRedirect to="/products" />
-        <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
+        <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path="/cart" component={Cart} />
       </Route>
       <Route path='*' component={NotFound} />

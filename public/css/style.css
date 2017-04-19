@@ -12,3 +12,13 @@
   width: 150px;
   height: 150px;
 }
+
+.single-product-img {
+  width: 300px;
+  height: 300px;
+}
+
+#single-product {
+  width: 350px;
+  margin: 0 auto;
+}

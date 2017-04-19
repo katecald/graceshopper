@@ -7,7 +7,7 @@ const Navbar = ({ user, logout }) => (
 
             <div className="navbar-header">
 
-                <a className="navbar-brand" href="#">Holiday Helper</a>
+                <Link to='/' className="navbar-brand">Holiday Helper</Link>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

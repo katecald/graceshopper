@@ -17,7 +17,7 @@ const Navbar = ({ user, logout }) => (
                 </ul>
 
                 <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/cart"><span className="glyphicon glyphicon-shopping-cart"></span></Link></li>
+                    <li><Link to="/cart"><span style={{fontSize: '50px'}} className="glyphicon glyphicon-shopping-cart"></span></Link></li>
                 </ul>
                 <button>Add To Cart</button>
             </div>

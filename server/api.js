@@ -16,15 +16,25 @@ api
     .then(product => res.send(product))
     .catch(next)
   })
+  // Has a side effect, should be a .post request
+  // Maybe POST /cart/:productId
+  //   req.body = {quantity: 3}
+  // OR req.body = {changeBy: -1}
+  //
   .get('addToCart', (req, res, next) => {
-    Thing.findById(req.body.productId)
-    // below will overwrite/ not handle multiples
-    .then(product => req.session.cart = {...req.session.cart, {[product]: (product || 0) + 1}})
-    .then(() => res.send(req.session.cart))
-    .catch(next)
+    req.session.cart = req.session.cart || {}
+    req.session.cart[req.body.productId] = req.body.quantity
+    // Thing.findById(req.body.productId)
+    // // below will overwrite/ not handle multiples
+    // .then(product => req.session.cart = {
+    //   // Can't use Object spread inside backend code (yet) 😭
+    //   // Emoji are ok.
+    //   ...req.session.cart, {
+    //     [req.body.productId]: (req.session.cart[productId] || 0) + 1
+    //   }})
+    // .then(() => res.send(req.session.cart))
+    // .catch(next)
   })
-
-})
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

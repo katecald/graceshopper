@@ -16,6 +16,12 @@ api
     .then(product => res.send(product))
     .catch(next)
   })
+  //Quantity is not yet functional. But with this route, someone can add product ids to their cart. 
+  .post('/addToCart', (req, res, next) => {
+    req.session.cart = req.session.cart || {}
+    req.session.cart[req.body.productId] = req.body.quantity || 1
+    res.send(req.session.cart)
+  })
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

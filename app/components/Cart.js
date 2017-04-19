@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+// center the checkout button
 const Cart = () => (
     <div>
         <h1>Cart</h1>
@@ -23,6 +24,9 @@ const Cart = () => (
                 </tr>
             </tbody>
         </table>
+        <div className='text-center'>
+          <Link to='/checkout' className='btn btn-success'>Checkout</Link>
+        </div>
     </div>
 )
 

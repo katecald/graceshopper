@@ -10,7 +10,11 @@ const store = createStore(
   composeWithDevTools(
     applyMiddleware(
       createLogger({collapsed: true}),
-      thunkMiddleware
+      // fake redux Promise middleware 
+      store => next => action => typeof action.then === 'function'
+        ? action.then(next)
+        : next(action),
+      thunkMiddleware,
     )
   )
 )

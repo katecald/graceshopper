@@ -8,11 +8,11 @@ class AppContainer extends Component {
   constructor(props) {
     super(props) 
 
-    this.handleCartClick = this.handleCartClick.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleCartClick() {
-    props.clickAction()
+  handleClick(e) {
+    props.clickAction(e.target.value)
   }
 
   render() {

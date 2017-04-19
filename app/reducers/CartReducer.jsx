@@ -4,20 +4,25 @@ const initialState = {
     cart: {}
 }
 
+// CONSTANTS
+export const CLICK_ACTION = "CLICK_ACTION" 
 
-const CLICK_ACTION = "CLICK_ACTION" 
+// ACTIONS
+const getCart = (res) => {
+  return {
+    type: CLICK_ACTION,
+    payload: res.data
+  }
+}
 
-export const clickAction = () => dispatch => {
-    axios.get('/api/addToCart')
-    .then(res => {
-        return {
-            type: CLICK_ACTION, 
-            payload: res.data
-        }
-    })
+export const clickAction = (productId) => {
+  return dispatch => {
+    axios.get('/api/addToCart', productId)
+    .then(res => dispatch(getCart(res)))
+  }
 }
       
-
+// REDUCER
 const cartReducer = (state = initialState, action) => {
   const newState = {...state}
   switch (action.type) {

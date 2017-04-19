@@ -11,11 +11,11 @@ const Products = (props) => {
 
           </div>
             {
-              props.products.products.map(product => {
+              props.products.map(product => {
                 return (
                   <div key={product.id} className='col-md-4'>
                   <Link to={`/products/${product.id}`}>
-                    <img src={product.imageURL} className='product-img' />=
+                    <img src={product.imageURL} className='product-img' />
                     <h1>
                       {product.name}
                     </h1>
@@ -23,7 +23,7 @@ const Products = (props) => {
                       ${product.price/100}
                     </h3>
                   </Link>
-                  <button>
+                  <button value={product.id}>
                     Add To Cart
                   </button>
                   </div>

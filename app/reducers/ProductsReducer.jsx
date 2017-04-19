@@ -15,23 +15,18 @@ const getProducts = (res) => {
   }
 }
 
-export const loadProducts = () => {
-  return dispatch => {
-    axios.get('/api/products')
-    .then(res => dispatch(getProducts(res)))
-  }
-}
+export const loadProducts = () =>
+  axios.get('/api/products')
+    .then(getProducts)
 
 // REDUCER
-const productsReducer = (state = initialState, action) => {
+const productsReducer = (state = [], action) => {
+  // CR: Maybe don't always make a copy (see ProductReducer.jsx)
   const newState = {...state}
   switch (action.type) {
-    case LOAD_PRODUCTS:
-      newState.products = action.payload
-      break
+    case LOAD_PRODUCTS: return action.payload
     default: return state
   }
-  return newState
 }
 
 export default productsReducer

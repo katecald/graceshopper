@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const initialState = {
-  currentProduct: {}
-}
-
 // CONSTANTS
 const LOAD_PRODUCT = 'LOAD_PRODUCT'
 
@@ -23,16 +19,13 @@ const getProduct = (res) => {
 }
 
 // REDUCER
-const productReducer = (state = initialState, action) => {
-  const newState = {...state}
+const productReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_PRODUCT:
-      newState.currentProduct = action.payload
-      break
+      return action.payload
     default:
       return state
   }
-  return newState
 }
 
 export default productReducer

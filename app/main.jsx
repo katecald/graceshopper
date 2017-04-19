@@ -18,24 +18,11 @@ import NotFound from './components/NotFound'
 import {loadProducts} from 'APP/app/reducers/ProductsReducer'
 import {loadProduct} from 'APP/app/reducers/ProductReducer'
 
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
-
 const onProductsEnter = () => {
   store.dispatch(loadProducts())
 }
 
 const onProductEnter = () => {
-  // store.dispatch(setProduct())
   store.dispatch(loadProduct())
 }
 

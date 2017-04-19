@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar'
+import {connect} from 'react-redux'
+import {clickAction} from '../reducers/CartReducer'
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
+
+  constructor(props) {
+    super(props) 
+
+    this.handleClick = this.handleClick.bind(this)
+    this.state = {quantity: null}
+  }
+
+  handleClick(e) {
+    this.props.clickAction(e.target.value)
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -10,10 +24,13 @@ export default class AppContainer extends Component {
         </div>
         <div className="row" id="page-content">
         {
-          this.props.children && React.cloneElement(this.props.children, {})
+          this.props.children && React.cloneElement(this.props.children, Object.assign({handleClick: this.handleClick}, this.props))
         }
         </div>
       </div>
     )
   }
 }
+
+export default connect(null, {clickAction})(AppContainer)
+

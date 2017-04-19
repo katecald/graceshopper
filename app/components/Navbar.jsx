@@ -18,6 +18,7 @@ const Navbar = ({ user, logout }) => (
                 <ul className="nav navbar-nav navbar-right">
                     <li><a href="#"><span className="glyphicon glyphicon-shopping-cart"></span></a></li>
                 </ul>
+                <button>Add To Cart</button>
             </div>
         </div>
     </nav>

@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar'
+import {connect} from 'react-redux'
+import {clickAction} from '../reducers'
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
+
+  constructor(props) {
+    super(props) 
+
+    this.handleCartClick = this.handleCartClick.bind(this)
+  }
+
+  handleCartClick() {
+    props.clickAction()
+  }
 
   render() {
     return (
@@ -18,3 +30,8 @@ export default class AppContainer extends Component {
     )
   }
 } 
+
+export default connect(null, {clickAction})(AppContainer)
+
+
+

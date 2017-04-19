@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const initialState = {
-  products: []
-}
-
 // CONSTANTS
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 

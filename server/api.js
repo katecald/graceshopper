@@ -21,9 +21,11 @@ api
   //   req.body = {quantity: 3}
   // OR req.body = {changeBy: -1}
   //
-  .get('addToCart', (req, res, next) => {
+  .post('/addToCart', (req, res, next) => {
+    console.log("PRODUCT ID", req.body.productId)
     req.session.cart = req.session.cart || {}
-    req.session.cart[req.body.productId] = req.body.quantity
+    req.session.cart[req.body.productId] = req.body.quantity || 1
+    console.log("HERES THE CART", req.session.cart)
     // Thing.findById(req.body.productId)
     // // below will overwrite/ not handle multiples
     // .then(product => req.session.cart = {
@@ -34,6 +36,7 @@ api
     //   }})
     // .then(() => res.send(req.session.cart))
     // .catch(next)
+    res.send(req.session.cart)
   })
 
 // No routes matched? 404.

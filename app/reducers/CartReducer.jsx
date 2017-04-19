@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const initialState = {
-    cart: {}
-}
-
 // CONSTANTS
 export const CLICK_ACTION = "CLICK_ACTION" 
 
@@ -16,22 +12,20 @@ const getCart = (res) => {
 }
 
 export const clickAction = (productId) => {
+  console.log("CLICKEDDDDD")
   return dispatch => {
-    axios.get('/api/addToCart', productId)
+    axios.post('/api/addToCart', {productId})
     .then(res => dispatch(getCart(res)))
   }
 }
       
 // REDUCER
-const cartReducer = (state = initialState, action) => {
-  const newState = {...state}
+const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case CLICK_ACTION:
-      newState.cart = action.payload
-      break
+      return action.payload
     default: return state
   }
-  return newState
 }
 
 export default cartReducer

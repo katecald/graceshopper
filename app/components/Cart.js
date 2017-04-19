@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+// center the checkout button
 const Cart = () => (
     <div>
         <h1>Cart</h1>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Navbar from './Navbar'
 
 export default class AppContainer extends Component {
-
   render() {
     return (
       <div className="container-fluid">
@@ -17,4 +16,4 @@ export default class AppContainer extends Component {
       </div>
     )
   }
-} 
+}

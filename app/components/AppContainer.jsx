@@ -33,5 +33,3 @@ class AppContainer extends Component {
 
 export default connect(null, {clickAction})(AppContainer)
 
-
-

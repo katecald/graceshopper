@@ -22,7 +22,6 @@ const onProductsEnter = () => {
 }
 
 const onProductEnter = () => {
-  // store.dispatch(setProduct())
   store.dispatch(loadProduct())
 }
 

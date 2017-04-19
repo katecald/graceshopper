@@ -17,10 +17,9 @@ export const loadProducts = () =>
 
 // REDUCER
 const productsReducer = (state = [], action) => {
-  // CR: Maybe don't always make a copy (see ProductReducer.jsx)
-  const newState = {...state}
   switch (action.type) {
-    case LOAD_PRODUCTS: return action.payload
+    case LOAD_PRODUCTS: 
+      return action.payload
     default: return state
   }
 }

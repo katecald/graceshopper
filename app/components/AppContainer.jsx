@@ -16,10 +16,6 @@ class AppContainer extends Component {
     this.props.clickAction(e.target.value)
   }
 
-  // handleChange(e) {
-  //   this.setState({quantity: e.target.value})
-  // }
-
   render() {
     return (
       <div className="container-fluid">

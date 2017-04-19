@@ -16,26 +16,10 @@ api
     .then(product => res.send(product))
     .catch(next)
   })
-  // Has a side effect, should be a .post request
-  // Maybe POST /cart/:productId
-  //   req.body = {quantity: 3}
-  // OR req.body = {changeBy: -1}
-  //
+  //Quantity is not yet functional. But with this route, someone can add product ids to their cart. 
   .post('/addToCart', (req, res, next) => {
-    console.log("PRODUCT ID", req.body.productId)
     req.session.cart = req.session.cart || {}
     req.session.cart[req.body.productId] = req.body.quantity || 1
-    console.log("HERES THE CART", req.session.cart)
-    // Thing.findById(req.body.productId)
-    // // below will overwrite/ not handle multiples
-    // .then(product => req.session.cart = {
-    //   // Can't use Object spread inside backend code (yet) 😭
-    //   // Emoji are ok.
-    //   ...req.session.cart, {
-    //     [req.body.productId]: (req.session.cart[productId] || 0) + 1
-    //   }})
-    // .then(() => res.send(req.session.cart))
-    // .catch(next)
     res.send(req.session.cart)
   })
 

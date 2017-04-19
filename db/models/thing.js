@@ -9,6 +9,6 @@ module.exports = db => db.define('things', {
   imageURL: STRING,
 })
 
-module.exports.associations = (Thing, {User, Favorite}) => {
-  Thing.belongsToMany(User, {as: 'lovers', through: Favorite})
+module.exports.associations = (Thing, {Order}) => {
+  Thing.belongsToMany(Order, {through: 'order_thing'})
 }

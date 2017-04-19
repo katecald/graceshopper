@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const Navbar = ({ user, logout }) => (
     <nav className="navbar navbar-default navbar-fixed-top">
@@ -16,7 +17,7 @@ const Navbar = ({ user, logout }) => (
                 </ul>
 
                 <ul className="nav navbar-nav navbar-right">
-                    <li><a href="#"><span className="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><Link to="/cart"><span className="glyphicon glyphicon-shopping-cart"></span></Link></li>
                 </ul>
             </div>
         </div>

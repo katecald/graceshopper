@@ -25,7 +25,7 @@ const Cart = () => (
             </tbody>
         </table>
         <div className='text-center'>
-          <button className='btn btn-success'>Checkout</button>
+          <Link to='/checkout' className='btn btn-success'>Checkout</Link>
         </div>
     </div>
 )

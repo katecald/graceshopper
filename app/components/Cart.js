@@ -5,9 +5,8 @@ import { connect } from 'react-redux'
 
 
 
-const Cart = function (props) {
-    return(
-    <div>
+const Cart = props =>
+    (<div>
         <h1>Cart</h1>
         <table className='table'>
             <thead>
@@ -36,7 +35,7 @@ const Cart = function (props) {
           <Link to='/checkout' className='btn btn-success'>Checkout</Link>
         </div>
     </div>
-)}
+)
 
 const mapState = ({cart}) => ({cart})
 

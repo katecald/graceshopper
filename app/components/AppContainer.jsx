@@ -12,7 +12,6 @@ class AppContainer extends Component {
   }
 
   handleClick(e) {
-    console.log('HANDLING CLICK', e.target.value)
     this.props.addToCart(e.target.value)
   }
 

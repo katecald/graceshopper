@@ -10,20 +10,19 @@ class AppContainer extends Component {
 
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.state = { quantity: null }
+    this.state = { quantity: {} }
   }
 
   handleClick(e) {
-    this.props.clickAction(e.target.value, this.state.quantity)
+    const productId = e.target.value
+    const quantity = this.state.quantity.productId || 1
+    this.props.clickAction(productId, quantity)
   }
 
   handleChange(e) {
-    console.log(e.target, e.target.value)
-    this.setState({quantity: e.target.value})
-      // { quantity: {
-    //   productId: quantityInDropDown
-    // }
-  // })
+    const productId = e.target.id
+    const quantity = +e.target.value
+    this.setState({quantity: {productId: quantity}})
   }
 
   render() {

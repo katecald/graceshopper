@@ -26,7 +26,7 @@ const Products = (props) => {
                 Add To Cart
                   </button>
                   <label htmlFor="quantity">Qty</label>
-              <select onChange={props.handleChange}>
+              <select id={product.id} onChange={props.handleChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

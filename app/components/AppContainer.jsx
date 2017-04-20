@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { clickAction } from '../reducers/CartReducer'
 
 class AppContainer extends Component {
-
   constructor(props) {
     super(props)
 
@@ -49,4 +48,3 @@ class AppContainer extends Component {
 }
 
 export default connect(null, { clickAction })(AppContainer)
-

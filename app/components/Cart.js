@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
+import axios from 'axios'
+import { connect } from 'react-redux'
 
-// center the checkout button
-const Cart = () => (
-    <div>
+
+
+const Cart = props =>
+    (<div>
         <h1>Cart</h1>
         <table className='table'>
             <thead>
@@ -15,13 +18,17 @@ const Cart = () => (
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><img className='cart-img' src='http://img.clipartall.com/anime-santa-claus-clipart-clipart-santa-claus-3500_3282.png' /></td>
-                    <td><Link>Santa Claus Package</Link></td>
-                    <td>$99.99</td>
+            {
+                props.cart.map(product => (
+                <tr key={product.id}>
+                    <td><img className='cart-img' src={product.imageURL}/></td>
+                    <td><Link to={`/products/${product.id}`}>{product.name}</Link></td>
+                    <td>${product.price/100}</td>
                     <td>1</td>
                     <td><button className='btn-danger'>X</button></td>
                 </tr>
+                )
+            )}
             </tbody>
         </table>
         <div className='text-center'>
@@ -30,4 +37,6 @@ const Cart = () => (
     </div>
 )
 
-export default Cart
+const mapState = ({cart}) => ({cart})
+
+export default connect(mapState, null)(Cart)

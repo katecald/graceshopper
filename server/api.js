@@ -1,5 +1,5 @@
 'use strict'
-const {Thing, Order, Cart} = require('APP/db')
+const {Thing, Order, Cart, Promise} = require('APP/db')
 const api = module.exports = require('express').Router()
 const Promise = require('bluebird'); 
 
@@ -17,7 +17,12 @@ api
     .then(product => res.send(product))
     .catch(next)
   })
-  //Quantity is not yet functional. But with this route, someone can add product ids to their cart. 
+  .get('/cart', (req, res, next) => {
+    Promise.map(Object.keys(req.session.cart), thingId =>
+      Thing.findById(thingId))
+     .then(productsInCart => res.send(productsInCart))
+     .catch(next)
+  })
   .post('/cart', (req, res, next) => {
     if (req.session.cart) {
       Promise.all([Order.findById(req.session.cart.id), Thing.findById(req.body.productId)])

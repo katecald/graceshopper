@@ -1,33 +1,38 @@
 import axios from 'axios'
 
 // CONSTANTS
-export const CLICK_ACTION = "CLICK_ACTION" 
+export const GOT_CART = 'GOT_CART'
 
 // ACTIONS
-const getCart = (res) => {
+const gotCart = (res) => {
   return {
-    type: CLICK_ACTION,
+    type: GOT_CART,
     payload: res.data
   }
 }
 
-//ACTION CREATORS
-
+// ACTION CREATORS
 export const clickAction = (productId, quantity) => {
   return dispatch => {
     axios.post('/api/cart', {productId, quantity})
-    .then(res => dispatch(getCart(res)))
   }
 }
-      
+
+export const getCart = () => {
+  return dispatch => {
+    axios.get('/api/cart')
+    .then(res => {
+      dispatch(gotCart(res)) })
+  }
+}
+
 // REDUCER
-const cartReducer = (state = {}, action) => {
+const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case CLICK_ACTION:
+    case GOT_CART:
       return action.payload
     default: return state
   }
 }
 
 export default cartReducer
-

@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 
 const Cart = function (props) {
-    console.log("props in cart view", props)
     return(
     <div>
         <h1>Cart</h1>

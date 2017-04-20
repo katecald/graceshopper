@@ -13,9 +13,9 @@ const getCart = (res) => {
 
 //ACTION CREATORS
 
-export const clickAction = (productId) => {
+export const clickAction = (productId, quantity) => {
   return dispatch => {
-    axios.post('/api/addToCart', {productId})
+    axios.post('/api/cart', {productId, quantity})
     .then(res => dispatch(getCart(res)))
   }
 }

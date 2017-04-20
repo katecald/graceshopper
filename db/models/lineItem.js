@@ -2,6 +2,6 @@
 
 const {INTEGER} = require('sequelize')
 
-module.exports = db => db.define('cart', {
+module.exports = db => db.define('line_item', {
   quantity: INTEGER
 })

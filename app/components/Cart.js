@@ -3,7 +3,11 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import { connect } from 'react-redux'
 
-const Cart = (props) => (
+
+
+const Cart = function (props) {
+    console.log("props in cart view", props)
+    return(
     <div>
         <h1>Cart</h1>
         <table className='table'>
@@ -18,10 +22,10 @@ const Cart = (props) => (
             <tbody>
             {
                 props.cart.map(product => (
-                <tr>
+                <tr key={product.id}>
                     <td><img className='cart-img' src={product.imageURL}/></td>
-                    <td><Link to={`/products/${product.id}`}></Link></td>
-                    <td>{product.price}</td>
+                    <td><Link to={`/products/${product.id}`}>{product.name}</Link></td>
+                    <td>${product.price/100}</td>
                     <td>1</td>
                     <td><button className='btn-danger'>X</button></td>
                 </tr>
@@ -33,7 +37,7 @@ const Cart = (props) => (
           <Link to='/checkout' className='btn btn-success'>Checkout</Link>
         </div>
     </div>
-)
+)}
 
 const mapState = ({cart}) => ({cart})
 

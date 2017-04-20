@@ -1,49 +1,37 @@
 import axios from 'axios'
-import { LOAD_PRODUCTS, getProducts } from 'APP/app/reducers/ProductsReducer'
 
 // CONSTANTS
-export const CLICK_ACTION = 'CLICK_ACTION'
+export const GOT_CART = 'GOT_CART'
 
 // ACTIONS
-const getCart = (res) => {
+const gotCart = (res) => {
   return {
-    type: CLICK_ACTION,
+    type: GOT_CART,
     payload: res.data
   }
 }
 
 // ACTION CREATORS
 
-export const clickAction = (productId) => {
+export const addToCart = (productId) => {
   return dispatch => {
     axios.post('/api/addToCart', {productId})
-    .then(res => dispatch(getCart(res)))
+    // .then(res => dispatch(gotCart(res)))
   }
 }
 
-export const getProductsById = () => {
+export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
-    .then(cart => {
-      console.log('CART IN AXIOS', cart)
-      return Promise.all(
-        Object.keys(cart).map(productId =>
-          axios.get(`/api/products/${productId}`)
-        )
-      )
-    })
     .then(res => {
-      console.log('RES FROM GETPRODUCTSBYID', res)
-      dispatch(getProducts(res))
-    })
+      console.log("data from getCart res", res.data);
+      dispatch(gotCart(res)) })
   }
 }
 // REDUCER
-const cartReducer = (state = {}, action) => {
+const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case CLICK_ACTION:
-      return action.payload
-    case LOAD_PRODUCTS:
+    case GOT_CART:
       return action.payload
     default: return state
   }

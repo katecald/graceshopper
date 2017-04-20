@@ -17,7 +17,7 @@ import NotFound from './components/NotFound'
 
 import {loadProducts} from 'APP/app/reducers/ProductsReducer'
 import {loadProduct} from 'APP/app/reducers/ProductReducer'
-import {getProductsById} from 'APP/app/reducers/CartReducer'
+import {getCart} from 'APP/app/reducers/CartReducer'
 
 
 const onProductsEnter = () => {
@@ -29,7 +29,7 @@ const onProductEnter = (nextState) => {
 }
 
 const onCartEnter = () => {
-  store.dispatch(getProductsById())
+  store.dispatch(getCart())
 }
 
 render(

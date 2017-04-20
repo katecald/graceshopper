@@ -1,5 +1,6 @@
 'use strict'
-const {Thing} = require('APP/db')
+
+const {Thing, Promise} = require('APP/db')
 const api = module.exports = require('express').Router()
 
 api
@@ -17,7 +18,10 @@ api
     .catch(next)
   })
   .get('/cart', (req, res, next) => {
-    res.send(req.session.cart)
+    Promise.map(Object.keys(req.session.cart), thingId =>
+      Thing.findById(thingId))
+     .then(productsInCart => res.send(productsInCart))
+     .catch(next)
   })
   // Quantity is not yet functional. But with this route, someone can add product ids to their cart.
   .post('/addToCart', (req, res, next) => {

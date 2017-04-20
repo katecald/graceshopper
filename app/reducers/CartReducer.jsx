@@ -16,7 +16,6 @@ const gotCart = (res) => {
 export const addToCart = (productId) => {
   return dispatch => {
     axios.post('/api/addToCart', {productId})
-    // .then(res => dispatch(gotCart(res)))
   }
 }
 
@@ -24,7 +23,6 @@ export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
     .then(res => {
-      console.log("data from getCart res", res.data);
       dispatch(gotCart(res)) })
   }
 }

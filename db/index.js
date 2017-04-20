@@ -10,7 +10,7 @@ const app = require('APP')
 
 debug(chalk.yellow(`Opening database connection to ${url}`))
 const db = module.exports = new Sequelize(url, {
-  logging: require('debug')('sql'),  // export DEBUG=sql in the environment to
+  logging: console.log,  // export DEBUG=sql in the environment to
                                      // get SQL queries
   define: {
     underscored: true,       // use snake_case rather than camelCase column names.

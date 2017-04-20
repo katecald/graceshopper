@@ -1,5 +1,5 @@
 'use strict'
-const {Thing, Order} = require('APP/db')
+const {Thing, Order, Cart} = require('APP/db')
 const api = module.exports = require('express').Router()
 const Promise = require('bluebird'); 
 
@@ -21,19 +21,25 @@ api
   .post('/addToCart', (req, res, next) => {
     console.log(req.session.cart)
     if (req.session.cart) {
+      console.log("IF", req.session.cart)
       Promise.all([Order.findById(req.session.cart.id), Thing.findById(req.body.productId)])
       .spread((order, thing) => {
-        order.addThing(thing, {through: {quantity: 1}})
+        order.addThing(thing, {quantity: 1})
       })
-      .then(order => req.session.cart = order)
+      .then(() =>  {
+        res.send(req.session.cart)
+      })
     } else {
       Promise.all([Order.create(), Thing.findById(req.body.productId)])
       .spread((order, thing) => {
-        order.addThing(thing, {through: {quantity: 1}})
+        order.addThing(thing, {quantity: 1})
+        req.session.cart = {id: order.id}
       })
-      .then(order => req.session.cart = order)
+      .then(() =>  {
+        console.log("CART", req.session.cart)
+        res.send(req.session.cart)
+    })
     }
-    res.send(req.session.cart)
   })
 
 // No routes matched? 404.

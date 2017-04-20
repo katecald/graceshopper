@@ -4,15 +4,15 @@ import {connect} from 'react-redux'
 import {clickAction} from '../reducers/CartReducer'
 
 class AppContainer extends Component {
-
   constructor(props) {
-    super(props) 
+    super(props)
 
     this.handleClick = this.handleClick.bind(this)
     this.state = {quantity: null}
   }
 
   handleClick(e) {
+    console.log('HANDLING CLICK', e.target.value)
     this.props.clickAction(e.target.value)
   }
 
@@ -33,4 +33,3 @@ class AppContainer extends Component {
 }
 
 export default connect(null, {clickAction})(AppContainer)
-

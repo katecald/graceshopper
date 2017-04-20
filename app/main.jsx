@@ -17,6 +17,8 @@ import NotFound from './components/NotFound'
 
 import {loadProducts} from 'APP/app/reducers/ProductsReducer'
 import {loadProduct} from 'APP/app/reducers/ProductReducer'
+import {getProductsById} from 'APP/app/reducers/CartReducer'
+
 
 const onProductsEnter = () => {
   store.dispatch(loadProducts())
@@ -24,6 +26,10 @@ const onProductsEnter = () => {
 
 const onProductEnter = (nextState) => {
   store.dispatch(loadProduct(nextState.params.id))
+}
+
+const onCartEnter = () => {
+  store.dispatch(getProductsById())
 }
 
 render(
@@ -34,7 +40,7 @@ render(
         <Route path="/checkout" component={Checkout} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
-        <Route path="/cart" component={Cart} />
+        <Route path="/cart" component={Cart} onEnter={onCartEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

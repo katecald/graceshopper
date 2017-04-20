@@ -5,6 +5,7 @@ export const GOT_CART = 'GOT_CART'
 
 // ACTIONS
 const gotCart = (res) => {
+  console.log('gotCart', res.data)
   return {
     type: GOT_CART,
     payload: res.data
@@ -22,6 +23,7 @@ export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
     .then(res => {
+      console.log('getcart', res);
       dispatch(gotCart(res)) })
   }
 }

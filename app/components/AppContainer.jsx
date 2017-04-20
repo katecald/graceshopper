@@ -15,12 +15,15 @@ class AppContainer extends Component {
   handleClick(e) {
     const productId = e.target.value
     const quantity = this.state.quantity.productId || 1
+    console.log("inside handleclick: PID ", productId, " qty ", quantity)
     this.props.clickAction(productId, quantity)
   }
 
   handleChange(e) {
+    console.log('handleChange', productId)
     const productId = e.target.id
     const quantity = +e.target.value
+    // WHAT DOES THIS DO
     this.setState({quantity: {productId: quantity}})
   }
 

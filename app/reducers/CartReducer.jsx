@@ -12,10 +12,9 @@ const gotCart = (res) => {
 }
 
 // ACTION CREATORS
-
-export const addToCart = (productId) => {
+export const clickAction = (productId, quantity) => {
   return dispatch => {
-    axios.post('/api/addToCart', {productId})
+    axios.post('/api/cart', {productId, quantity})
   }
 }
 
@@ -26,6 +25,7 @@ export const getCart = () => {
       dispatch(gotCart(res)) })
   }
 }
+
 // REDUCER
 const cartReducer = (state = [], action) => {
   switch (action.type) {

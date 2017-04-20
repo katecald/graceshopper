@@ -23,12 +23,11 @@ api
      .then(productsInCart => res.send(productsInCart))
      .catch(next)
   })
-  // Quantity is not yet functional. But with this route, someone can add product ids to their cart.
-  .post('/addToCart', (req, res, next) => {
+  .post('/cart', (req, res, next) => {
     if (req.session.cart) {
       Promise.all([Order.findById(req.session.cart.id), Thing.findById(req.body.productId)])
       .spread((order, thing) => {
-        order.addThing(thing, {quantity: 1})
+        order.addThing(thing, {quantity: +req.body.quantity})
       })
       .then(() =>  {
         res.send(req.session.cart)

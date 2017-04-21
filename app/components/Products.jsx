@@ -24,8 +24,8 @@ const Products = (props) => {
               </Link>
               <button className='btn btn-info' value={product.id} onClick={props.handleClick}>
                 Add To Cart
-                  </button>
-                  <label htmlFor="quantity">Qty</label>
+              </button>
+              <label htmlFor="quantity">Qty</label>
               <select id={product.id} onChange={props.handleQuantityChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>

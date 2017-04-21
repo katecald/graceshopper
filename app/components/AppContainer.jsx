@@ -44,7 +44,7 @@ class AppContainer extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <Navbar />
         </div>

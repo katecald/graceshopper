@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Login = ({ login }) => (
-  <div id='login'>
-    <h1>Log In</h1>
+export const SignUp = () => (
+  <div id='signup'>
+    <h1>Sign Up</h1>
     <form>
     <div className="form-group">
         <label htmlFor="formName">Email Address</label>
@@ -17,10 +17,4 @@ export const Login = ({ login }) => (
   </div>
 )
 
-import {login} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
-
-export default connect(
-  state => ({}),
-  {login},
-)(Login)
+export default SignUp; 

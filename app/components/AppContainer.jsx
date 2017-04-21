@@ -14,17 +14,15 @@ class AppContainer extends Component {
 
   handleClick(e) {
     const productId = e.target.value
-    const quantity = this.state.quantity.productId || 1
-    console.log("inside handleclick: PID ", productId, " qty ", quantity)
+    const quantity = this.state.quantity[productId] || 1
     this.props.clickAction(productId, quantity)
   }
 
   handleChange(e) {
-    console.log('handleChange', productId)
     const productId = e.target.id
     const quantity = +e.target.value
-    // WHAT DOES THIS DO
-    this.setState({quantity: {productId: quantity}})
+    this.setState({quantity: {[productId]: quantity}})
+    console.log('AFTER HANDLECHANGE', this.state.quantity)
   }
 
   render() {

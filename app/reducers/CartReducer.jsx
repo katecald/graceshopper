@@ -23,7 +23,7 @@ export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
     .then(res => {
-      console.log('getcart', res);
+      console.log('getcart', res)
       dispatch(gotCart(res)) })
   }
 }

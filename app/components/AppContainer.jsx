@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
 import { clickAction } from '../reducers/CartReducer'
@@ -8,8 +9,13 @@ class AppContainer extends Component {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.state = { quantity: {} }
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
+    this.state = {
+      quantity: {},
+      confirmationEmailAddress: ''
+    }
   }
 
   handleClick(e) {
@@ -18,11 +24,20 @@ class AppContainer extends Component {
     this.props.clickAction(productId, quantity)
   }
 
-  handleChange(e) {
+  handleQuantityChange(e) {
     const productId = e.target.id
     const quantity = +e.target.value
     this.setState({quantity: {[productId]: quantity}})
-    console.log('AFTER HANDLECHANGE', this.state.quantity)
+  }
+
+  handleEmailChange(e) {
+    this.setState({confirmationEmailAddress: e.target.value})
+  }
+
+  handleCheckout(e) {
+    e.preventDefault()
+    axios.post('api/email', {email: this.state.confirmationEmailAddress})
+      .catch(console.error)
   }
 
   render() {
@@ -37,7 +52,9 @@ class AppContainer extends Component {
               this.props.children,
               Object.assign({
                 handleClick: this.handleClick,
-                handleChange: this.handleChange
+                handleQuantityChange: this.handleQuantityChange,
+                handleCheckout: this.handleCheckout,
+                handleEmailChange: this.handleEmailChange
               },
                 this.props)
             )

@@ -1,5 +1,5 @@
 #page-content {
-    margin-top: 50px;
+    margin-top: 75px;
 }
 
 .product-img {
@@ -25,4 +25,8 @@
 #single-product {
   width: 350px;
   margin: 0 auto;
+}
+
+.formEmail, .formPassword {
+  width: 500px; 
 }

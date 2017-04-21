@@ -16,9 +16,15 @@ const Product = (props) => {
           {props.product.description}
         </h4>
         <div className='text-center'>
-          <button className='btn btn-info'>
+          <button className='btn btn-info' value={props.product.id} onClick={props.handleClick}>
             Add To Cart
           </button>
+          <label htmlFor="quantity">Qty</label>
+          <select id={props.product.id} onChange={props.handleQuantityChange}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
         </div>
      </div>
   )

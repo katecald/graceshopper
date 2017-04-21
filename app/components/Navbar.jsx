@@ -12,14 +12,15 @@ const Navbar = ({ user, logout }) => (
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav navbar-left">
-                    <li className="active"><a href="#">Log In <span className="sr-only">(current)</span></a></li>
+                    <li><a href="#">Log In</a></li>
                     <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Sign Out</a></li>
                 </ul>
 
                 <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/cart"><span style={{fontSize: '50px'}} className="glyphicon glyphicon-shopping-cart"></span></Link></li>
+                    <li><Link to="/cart"><span style={{fontSize: '25px'}} className="glyphicon glyphicon-shopping-cart"></span></Link></li>
                 </ul>
-                <button>Add To Cart</button>
             </div>
         </div>
     </nav>

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
-import { clickAction } from '../reducers/CartReducer'
+import { addToCart } from '../reducers/CartReducer'
+import { cartQuantity } from '../reducers/QuantityReducer'
 
 class AppContainer extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class AppContainer extends Component {
   handleClick(e) {
     const productId = e.target.value
     const quantity = this.state.quantity[productId] || 1
-    this.props.clickAction(productId, quantity)
+    this.props.addToCart(productId, quantity)
+    this.props.cartQuantity(quantity)
   }
 
   handleQuantityChange(e) {
@@ -73,4 +75,4 @@ class AppContainer extends Component {
   }
 }
 
-export default connect(null, { clickAction })(AppContainer)
+export default connect(null, { addToCart, cartQuantity })(AppContainer)

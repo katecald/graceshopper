@@ -12,7 +12,7 @@ const gotCart = (res) => {
 }
 
 // ACTION CREATORS
-export const clickAction = (productId, quantity) => {
+export const addToCart = (productId, quantity) => {
   return dispatch => {
     axios.post('/api/cart', {productId, quantity})
       .catch(console.error)
@@ -23,7 +23,7 @@ export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
     .then(res => {
-      dispatch(gotCart(res)) 
+      dispatch(gotCart(res))
     })
     .catch(console.error)
   }

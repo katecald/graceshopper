@@ -3,8 +3,6 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import { connect } from 'react-redux'
 
-
-
 const Cart = props =>
     (<div>
         <h1>Cart</h1>

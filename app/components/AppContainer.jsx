@@ -12,6 +12,7 @@ class AppContainer extends Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       quantity: {},
       confirmationEmailAddress: ''
@@ -40,6 +41,12 @@ class AppContainer extends Component {
       .catch(console.error)
   }
 
+  handleDelete(e) {
+    const productId = e.target.id
+    axios.put('api/cart', {productId})
+      .catch(console.error)
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -54,7 +61,8 @@ class AppContainer extends Component {
                 handleClick: this.handleClick,
                 handleQuantityChange: this.handleQuantityChange,
                 handleCheckout: this.handleCheckout,
-                handleEmailChange: this.handleEmailChange
+                handleEmailChange: this.handleEmailChange,
+                handleDelete: this.handleDelete
               },
                 this.props)
             )

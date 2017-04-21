@@ -24,7 +24,7 @@ const Cart = props =>
                     <td><img className='cart-img' src={product.imageURL}/></td>
                     <td><Link to={`/products/${product.id}`}>{product.name}</Link></td>
                     <td>${product.price/100}</td>
-                    <td>1</td>
+                    <td>{product.quantity}</td>
                     <td><button className='btn-danger'>X</button></td>
                 </tr>
                 )

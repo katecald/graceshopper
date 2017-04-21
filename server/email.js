@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const secret = require('../.secrets')
 
 
 module.exports = require('express').Router()
@@ -12,8 +13,8 @@ function sendEmail(email) {
     let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'holidayhelperGHA@gmail.com',
-        pass: 'fullst@ck'
+        user: secret.user,
+        pass: secret.pass
     }
 });
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
-const Navbar = ({ user, logout }) => (
+const Navbar = (props) => (
     <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
 
@@ -19,11 +20,18 @@ const Navbar = ({ user, logout }) => (
                 </ul>
 
                 <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/cart"><span style={{fontSize: '25px'}} className="glyphicon glyphicon-shopping-cart"></span></Link></li>
+                    <li>
+                      <Link to="/cart">
+                        <span style={{fontSize: '25px'}} className="glyphicon glyphicon-shopping-cart"></span>
+                        <span>{props.cartQuantity}</span>
+                      </Link>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 )
 
-export default Navbar
+const mapState = ({ cartQuantity }) => ({ cartQuantity })
+
+export default connect(mapState, null)(Navbar)

@@ -3,7 +3,7 @@ import React from 'react'
 const Checkout = (props) => (
 <div id='checkout'>
     <h1>Checkout</h1>
-    <form>
+    <form onSubmit={props.handleCheckout}>
     <div className="form-group">
         <label htmlFor="formName">Name</label>
         <input type="text" className="form-control" id="formName" placeholder="Enter full name" />
@@ -38,7 +38,7 @@ const Checkout = (props) => (
         <label htmlFor="formPhone">Phone Number</label>
         <input type="text" className="form-control" id="formPhone" placeholder="Enter phone number" />
     </div>
-    <button onSubmit={props.handleCheckout} type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-primary">Submit</button>
     </form>
 </div>
 )

@@ -10,16 +10,20 @@ module.exports = require('express').Router()
 function sendEmail(email) {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        service: 'gmail'
-    })
+    service: 'gmail',
+    auth: {
+        user: 'holidayhelperGHA@gmail.com',
+        pass: 'fullst@ck'
+    }
+});
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Holiday Helper" <hh@holidayhelper.com>', // sender address
+        from: '"Holiday Helper" <holidayhelperGHA@gmail.com>', // sender address
         to: email, // list of receivers
         subject: 'Order Confirmation', // Subject line
         text: 'Congrats! You just placed the best order of your life.', // plain text body
-        html: '<b>Hello world ?</b>' // html body
+        html: '<p>Congrats! You just placed the best order of your life.</p>' // html body
     };
 
     // send mail with defined transport object

@@ -21,7 +21,6 @@ class AppContainer extends Component {
   handleClick(e) {
     const productId = e.target.value
     const quantity = this.state.quantity.productId || 1
-    console.log("inside handleclick: PID ", productId, " qty ", quantity)
     this.props.clickAction(productId, quantity)
   }
 
@@ -37,9 +36,8 @@ class AppContainer extends Component {
     this.setState({confirmationEmailAddress: e.target.value})
   }
 
-  handleCheckout() {
-    //send email to this.state.confirmationEmailAddress
-    //api/email
+  handleCheckout(e) {
+    e.preventDefault()
     axios.post('api/email', {email: this.state.confirmationEmailAddress})
       .catch(console.error)
   }

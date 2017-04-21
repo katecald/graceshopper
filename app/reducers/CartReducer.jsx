@@ -16,6 +16,7 @@ const gotCart = (res) => {
 export const clickAction = (productId, quantity) => {
   return dispatch => {
     axios.post('/api/cart', {productId, quantity})
+      .catch(console.error)
   }
 }
 
@@ -23,8 +24,9 @@ export const getCart = () => {
   return dispatch => {
     axios.get('/api/cart')
     .then(res => {
-      console.log('getcart', res);
-      dispatch(gotCart(res)) })
+      dispatch(gotCart(res)) 
+    })
+    .catch(console.error)
   }
 }
 

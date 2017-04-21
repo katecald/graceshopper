@@ -1,27 +1,27 @@
 import React from 'react'
-
-const Checkout = () => (
+//When Submit button is clicked, it doesn't look like handleCheckout is being called because 'api/email' is never hit
+const Checkout = (props) => (
 <div id='checkout'>
     <h1>Checkout</h1>
     <form>
     <div className="form-group">
-        <label for="formName">Name</label>
+        <label htmlFor="formName">Name</label>
         <input type="text" className="form-control" id="formName" placeholder="Enter full name" />
     </div>
     <div className="form-group">
-        <label for="formEmail">Email Address</label>
-        <input type="email" className="form-control" id="formEmail" placeholder="Enter email" />
+        <label htmlFor="formEmail">Email Address</label>
+        <input onChange={props.handleEmailChange}type="email" className="form-control" id="formEmail" placeholder="Enter email" />
     </div>
     <div className="form-group">
-        <label for="formStreet">Street</label>
+        <label htmlFor="formStreet">Street</label>
         <input type="text" className="form-control" id="formStreet" placeholder="Enter street address" />
     </div>
     <div className="form-group">
-        <label for="formCity">City</label>
+        <label htmlFor="formCity">City</label>
         <input type="text" className="form-control" id="formCity" placeholder="Enter city" />
     </div>
     <div className="form-group">
-        <label for="formSelectState">State</label>
+        <label htmlFor="formSelectState">State</label>
         <select className="form-control" id="formSelectState">
         <option>NY</option>
         <option>CA</option>
@@ -31,14 +31,14 @@ const Checkout = () => (
         </select>
     </div>
     <div className="form-group">
-        <label for="formZip">Zip Code</label>
+        <label htmlFor="formZip">Zip Code</label>
         <input type="text" className="form-control" id="formZip" placeholder="Enter zip code" />
     </div>
     <div className="form-group">
-        <label for="formPhone">Phone Number</label>
+        <label htmlFor="formPhone">Phone Number</label>
         <input type="text" className="form-control" id="formPhone" placeholder="Enter phone number" />
     </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button onSubmit={props.handleCheckout} type="submit" className="btn btn-primary">Submit</button>
     </form>
 </div>
 )

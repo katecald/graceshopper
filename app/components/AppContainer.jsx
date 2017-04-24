@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import {browserHistory} from 'react-router'
 import axios from 'axios'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
-import { addToCart } from '../reducers/CartReducer'
+import { addToCart, deleteFromCart } from '../reducers/CartReducer'
 import { cartQuantity } from '../reducers/QuantityReducer'
 
 class AppContainer extends Component {
@@ -14,6 +15,7 @@ class AppContainer extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       quantity: {},
       confirmationEmailAddress: ''
@@ -39,7 +41,15 @@ class AppContainer extends Component {
 
   handleCheckout(e) {
     e.preventDefault()
-    axios.post('api/email', {email: this.state.confirmationEmailAddress})
+    axios.post('api/email', {
+      email: this.state.confirmationEmailAddress,
+      name: e.target.formName.value,
+      address: e.target.formStreet.value + '\n'
+        + e.target.formCity.value + ', '
+        + e.target.formSelectState.value + ' '
+        + e.target.formZip.value,
+      phone: e.target.formPhone.value
+    })
       .catch(console.error)
   }
 
@@ -54,8 +64,11 @@ class AppContainer extends Component {
     .catch(console.error)
   }
 
-
-
+  handleDelete(e) {
+    e.preventDefault()
+    const productId = e.target.id
+    this.props.deleteFromCart(productId)
+  }
 
   render() {
     return (
@@ -72,7 +85,8 @@ class AppContainer extends Component {
                 handleQuantityChange: this.handleQuantityChange,
                 handleCheckout: this.handleCheckout,
                 handleEmailChange: this.handleEmailChange, 
-                handleSignup: this.handleSignup
+                handleSignup: this.handleSignup,
+                handleDelete: this.handleDelete
               },
                 this.props)
             )
@@ -83,4 +97,4 @@ class AppContainer extends Component {
   }
 }
 
-export default connect(null, { addToCart, cartQuantity })(AppContainer)
+export default connect(null, { addToCart, cartQuantity, deleteFromCart })(AppContainer)

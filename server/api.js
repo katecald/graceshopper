@@ -1,7 +1,7 @@
 'use strict'
 const { Thing, Order, Cart, LineItem } = require('APP/db')
 const api = module.exports = require('express').Router()
-const Promise = require('bluebird');
+const Promise = require('bluebird')
 
 api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))

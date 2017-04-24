@@ -8,10 +8,10 @@ export const cartQuantity = quantity => ({
 })
 
 // REDUCER
-const quantityReducer = (state = [], action) => {
+const quantityReducer = (state = 0, action) => {
   switch (action.type) {
     case CART_QUANTITY:
-      return [[...state, action.payload].reduce((a, b) => { return a + b }, 0)]
+      return state + action.payload
     default: return state
   }
 }

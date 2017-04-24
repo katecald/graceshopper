@@ -52,7 +52,6 @@ class AppContainer extends Component {
     }
     axios.post('api/users', newUser)
     .catch(console.error)
-    console.log("handle signup", this.state.newUser)
   }
 
 

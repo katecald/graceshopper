@@ -21,27 +21,27 @@ const deletedFromCart = (res) => {
 
 // ACTION CREATORS
 export const addToCart = (productId, quantity) => {
-  return dispatch => {
+  return dispatch =>
     axios.post('/api/cart', {productId, quantity})
+      // TODO: Maybe make POST /api/cart respond with the cart?
+      .then(() => dispatch(getCart()))
       .catch(console.error)
-  }
 }
 
 export const deleteFromCart = (productId) => {
-  return dispatch => {
+  return dispatch =>
     axios.put('api/cart', {productId})
+      .then(res => dispatch(gotCart(res)))
       .catch(console.error)
-  }
 }
 
 export const getCart = () => {
-  return dispatch => {
+  return dispatch =>
     axios.get('/api/cart')
     .then(res => {
       dispatch(gotCart(res))
     })
     .catch(console.error)
-  }
 }
 
 // REDUCER

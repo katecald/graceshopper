@@ -23,3 +23,6 @@ export default store
 
 // Set the auth info at start
 store.dispatch(whoami())
+
+import {getCart} from './reducers/CartReducer'
+store.dispatch(getCart())

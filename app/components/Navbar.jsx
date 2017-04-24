@@ -32,6 +32,8 @@ const Navbar = (props) => (
     </nav>
 )
 
-const mapState = ({ cartQuantity }) => ({ cartQuantity })
+const mapState = ({ cart }) => ({
+  cartQuantity: cart.reduce(
+    (count, line) => count + line.quantity, 0) })
 
 export default connect(mapState, null)(Navbar)

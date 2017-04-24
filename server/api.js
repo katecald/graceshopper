@@ -18,19 +18,10 @@ api
       .then(product => res.send(product))
       .catch(next)
   })
-
-  .get('/cart', (req, res, next) => {
-    Order.findAll({ where: { id: req.session.cart.id }, include: [Thing, LineItem] })
-      .then(lineitems => {
-        const toSend = lineitems[0].things.map((thing, i) => {
-          thing.dataValues.quantity = lineitems[0].line_items[i].quantity
-          return thing
-        })
-        res.send(toSend)
-      })
-      .catch(next)
-  })
-
+  .get('/cart', (req, res, next) =>
+    getCart(req)
+      .then(cart => res.send(cart))
+      .catch(next))
   .post('/cart', (req, res, next) => {
     if (req.session.cart) {
       Promise.all([Order.findById(req.session.cart.id), Thing.findById(req.body.productId)])
@@ -56,25 +47,35 @@ api
   .put('/cart', (req, res, next) => {
     const orderId = +req.session.cart.id
     const thingId = +req.body.productId
-    Promise.all([
-      LineItem.findOne({
-        where: {
-          thing_id: thingId,
-          order_id: orderId
-        }
-      }),
-      Order.findById(orderId)
-    ])
-      .spread((item, order) => {
-        Promise.all([
-          order.removeThing(thingId),
-          item.destroy()
-        ])
-      })
-      .then(res.sendStatus(204))
-      .catch(next)
+    LineItem.destroy({
+      where: {
+        thing_id: thingId,
+        order_id: orderId
+      }
+    })
+    .then(() => getCart(req))
+    .then(cart => res.send(cart))
+    .catch(next)    
   })
-
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
+
+function getCart(req) {
+  if (!req.session.cart || !req.session.cart.id) {
+    return Promise.resolve('no cart');
+  }
+
+  return Order.findAll({ 
+    where: { 
+      id: req.session.cart.id 
+    }, 
+    include: [Thing, LineItem] 
+  })
+  .then(lineitems => {
+    return lineitems[0].things.map((thing, i) => {
+      thing.dataValues.quantity = lineitems[0].line_items[i].quantity
+      return thing
+    });
+  })
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import {browserHistory} from 'react-router'
 import axios from 'axios'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
-import { addToCart } from '../reducers/CartReducer'
+import { addToCart, deleteFromCart } from '../reducers/CartReducer'
 import { cartQuantity } from '../reducers/QuantityReducer'
 
 class AppContainer extends Component {
@@ -13,6 +14,7 @@ class AppContainer extends Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       quantity: {},
       confirmationEmailAddress: ''
@@ -42,6 +44,12 @@ class AppContainer extends Component {
       .catch(console.error)
   }
 
+  handleDelete(e) {
+    e.preventDefault()
+    const productId = e.target.id
+    this.props.deleteFromCart(productId)
+  }
+
   render() {
     return (
       <div className="container">
@@ -56,7 +64,8 @@ class AppContainer extends Component {
                 handleClick: this.handleClick,
                 handleQuantityChange: this.handleQuantityChange,
                 handleCheckout: this.handleCheckout,
-                handleEmailChange: this.handleEmailChange
+                handleEmailChange: this.handleEmailChange,
+                handleDelete: this.handleDelete
               },
                 this.props)
             )
@@ -67,4 +76,4 @@ class AppContainer extends Component {
   }
 }
 
-export default connect(null, { addToCart, cartQuantity })(AppContainer)
+export default connect(null, { addToCart, cartQuantity, deleteFromCart })(AppContainer)

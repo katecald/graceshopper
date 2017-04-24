@@ -3,8 +3,6 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import { connect } from 'react-redux'
 
-
-
 const Cart = props =>
     (<div>
         <h1>Cart</h1>
@@ -25,7 +23,7 @@ const Cart = props =>
                     <td><Link to={`/products/${product.id}`}>{product.name}</Link></td>
                     <td>${product.price/100}</td>
                     <td>{product.quantity}</td>
-                    <td><button className='btn-danger'>X</button></td>
+                    <td><button onClick={props.handleDelete} id={product.id} className='btn-danger'>X</button></td>
                 </tr>
                 )
             )}

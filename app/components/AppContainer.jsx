@@ -14,6 +14,7 @@ class AppContainer extends Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleSignup = this.handleSignup.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       quantity: {},
@@ -52,6 +53,17 @@ class AppContainer extends Component {
       .catch(console.error)
   }
 
+  handleSignup(e) {
+    e.preventDefault()
+    const newUser = {
+      name: e.target.name.value, 
+      email: e.target.email.value, 
+      password: e.target.password.value
+    }
+    axios.post('api/users', newUser)
+    .catch(console.error)
+  }
+
   handleDelete(e) {
     e.preventDefault()
     const productId = e.target.id
@@ -72,7 +84,8 @@ class AppContainer extends Component {
                 handleClick: this.handleClick,
                 handleQuantityChange: this.handleQuantityChange,
                 handleCheckout: this.handleCheckout,
-                handleEmailChange: this.handleEmailChange,
+                handleEmailChange: this.handleEmailChange, 
+                handleSignup: this.handleSignup,
                 handleDelete: this.handleDelete
               },
                 this.props)

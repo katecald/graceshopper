@@ -13,10 +13,10 @@ const Navbar = (props) => (
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav navbar-left">
-                    <li><a href="#">Log In</a></li>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Sign Out</a></li>
+                    <li><Link to="/login">Log In</Link></li>
+                    <li><Link to="/signup">Sign Up</Link></li>
+                    <li><Link to="/login">My Account</Link></li>
+                    <li><Link to="/login">Sign Out</Link></li>
                 </ul>
 
                 <ul className="nav navbar-nav navbar-right">

@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 import Checkout from './components/Checkout'
 import Cart from './components/Cart'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
@@ -37,6 +38,8 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
         <IndexRedirect to="/products" />
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={SignUp}/>
         <Route path="/checkout" component={Checkout} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />

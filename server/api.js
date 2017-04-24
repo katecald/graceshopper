@@ -63,7 +63,7 @@ api.use((req, res) => res.status(404).end())
 
 function getCart(req) {
   if (!req.session.cart || !req.session.cart.id) {
-    return Promise.resolve('no cart');
+    return Promise.resolve([]);
   }
 
   return Order.findAll({ 

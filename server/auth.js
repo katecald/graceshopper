@@ -135,6 +135,7 @@ auth.post('/login/local'
         })
         .catch(next)
     }
+    else res.sendStatus(200)
 })
 
   // GET requests for OAuth login:

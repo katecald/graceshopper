@@ -1,9 +1,14 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
+import { login } from 'APP/app/reducers/auth'
+import { connect } from 'react-redux'
 
 export const Login = ({ login }) => {
   function handleLogin(e) {
     e.preventDefault()
     login(e.target.email.value, e.target.password.value)
+    .then(browserHistory.replace('/products'))
+    .catch(console.error)
   }
 
   return (<div id='login'>
@@ -22,9 +27,6 @@ export const Login = ({ login }) => {
   </div>
   )
 }
-
-import { login } from 'APP/app/reducers/auth'
-import { connect } from 'react-redux'
 
 export default connect(
   state => ({}),

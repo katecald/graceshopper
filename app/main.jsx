@@ -10,6 +10,7 @@ import Products from './components/Products'
 import Product from './components/Product'
 import Navbar from './components/Navbar'
 import Checkout from './components/Checkout'
+import OrderConfirmation from './components/OrderConfirmation'
 import Cart from './components/Cart'
 import OrderHistory from './components/OrderHistory'
 import Login from './components/Login'
@@ -47,6 +48,7 @@ render(
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={SignUp}/>
         <Route path="/checkout" component={Checkout} />
+        <Route path="/confirmation" component={OrderConfirmation} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />

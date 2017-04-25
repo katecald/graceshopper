@@ -149,9 +149,9 @@ auth.post('/login/local'
     })(req, res, next)
   )
 
-  auth.post('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/api/auth/whoami')
-  })
+auth.post('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/whoami')
+})
 
-  module.exports = auth
+module.exports = auth

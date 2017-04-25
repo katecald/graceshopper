@@ -30,3 +30,7 @@
 .formEmail, .formPassword {
   width: 500px; 
 }
+
+#order-total {
+  font-weight: bolder;
+}

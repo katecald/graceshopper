@@ -8,7 +8,7 @@
   margin-top: 50px;
 }
 
-#checkout {
+#checkout, #login {
   width: 600px;
 }
 
@@ -27,7 +27,7 @@
   margin: 0 auto;
 }
 
-.formEmail, .formPassword {
+.formEmail, .formPassword, .formName {
   width: 500px;
 }
 
@@ -47,5 +47,9 @@ body {
 }
 
 .navbar {
-  background-color: #5bc0de;
+  background-color: #95cbdb;
+}
+
+.quantity {
+  padding-left: 20px;
 }

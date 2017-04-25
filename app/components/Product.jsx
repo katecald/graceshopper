@@ -15,17 +15,23 @@ const Product = (props) => {
         <h4>
           {props.product.description}
         </h4>
-        <div className='text-center'>
+        <table className='text-center'>
+        <tr>
+        <td>
           <button className='btn btn-info' value={props.product.id} onClick={props.handleClick}>
             Add To Cart
           </button>
+          </td>
+          <td className='quantity'>
           <label htmlFor="quantity">Qty</label>
           <select id={props.product.id} onChange={props.handleQuantityChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
           </select>
-        </div>
+          </td>
+          </tr>
+        </table>
      </div>
   )
 }

@@ -22,15 +22,23 @@ const Products = (props) => {
                   ${product.price / 100}
                 </h3>
               </Link>
+              <table>
+              <tr>
+              <td>
               <button className='btn btn-info' value={product.id} onClick={props.handleClick}>
                 Add To Cart
               </button>
+              </td>
+              <td className='quantity'>
               <label htmlFor="quantity">Qty</label>
               <select id={product.id} onChange={props.handleQuantityChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
+              </td>
+              </tr>
+              </table>
             </div>
           )
         })

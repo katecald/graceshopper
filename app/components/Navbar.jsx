@@ -1,8 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 const Navbar = (props) => {
+  const handleLogout = () => {
+    axios.post('api/auth/logout')
+    .then(() => browserHistory.replace('/products'))
+    .catch(console.error)
+  }
+
     return (
         <nav className="navbar navbar-default navbar-fixed-top">
             <div className="container-fluid">
@@ -16,8 +23,8 @@ const Navbar = (props) => {
                     {props.user
                         ? <ul className="nav navbar-nav navbar-left">
                             <li className='nav-links'><Link>{`Hello, ${props.user.name}!`}</Link></li>
-                            <li><Link to="/#">My Account</Link></li>
-                            <li><Link to="/#">Sign Out</Link></li>
+                            <li><Link to={`/account/${props.user.id}`}>My Account</Link></li>
+                            <li><Link to='/#' onClick={handleLogout}>Sign Out</Link></li>
                         </ul>
                         : <ul className="nav navbar-nav navbar-left">
                             <li><Link to="/login">Log In</Link></li>

@@ -53,3 +53,7 @@ body {
 .quantity {
   padding-left: 20px;
 }
+
+#order-total {
+  font-weight: bolder;
+}

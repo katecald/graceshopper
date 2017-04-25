@@ -3,15 +3,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './reducers'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import {whoami} from './reducers/auth'
-import {getCart} from './reducers/CartReducer'
+import { whoami } from './reducers/auth'
+import { getCart } from './reducers/CartReducer'
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(
       createLogger({collapsed: true}),
-      // fake redux Promise middleware 
+      // fake redux Promise middleware
       store => next => action => typeof action.then === 'function'
         ? action.then(next)
         : next(action),

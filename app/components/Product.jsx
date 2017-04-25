@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const Product = (props) => {
-  console.log('PROPS', props)
   return (
     <div id='single-product'>
       <img className='single-product-img' src={`/${props.product.imageURL}`} />

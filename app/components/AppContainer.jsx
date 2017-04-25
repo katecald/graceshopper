@@ -62,7 +62,8 @@ class AppContainer extends Component {
       password: e.target.password.value
     }
     axios.post('api/users', newUser)
-      .catch(console.error)
+    .then(browserHistory.replace('/products'))
+    .catch(console.error)
   }
 
   handleDelete(e) {

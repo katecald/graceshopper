@@ -55,7 +55,7 @@ api
     })
     .then(() => getCart(req))
     .then(cart => res.send(cart))
-    .catch(next)    
+    .catch(next)
   })
   .post('/cart/buy', (req, res, next) => {
     getCart(req)
@@ -68,18 +68,18 @@ api.use((req, res) => res.status(404).end())
 
 function getCart(req) {
   if (!req.session.cart || !req.session.cart.id) {
-    return Promise.resolve([]);
+    return Promise.resolve([])
   }
-  return Order.findAll({ 
-    where: { 
-      id: req.session.cart.id 
-    }, 
-    include: [Thing, LineItem] 
+  return Order.findAll({
+    where: {
+      id: req.session.cart.id
+    },
+    include: [Thing, LineItem]
   })
   .then(lineitems => {
     return lineitems[0].things.map((thing, i) => {
       thing.dataValues.quantity = lineitems[0].line_items[i].quantity
       return thing
-    });
+    })
   })
 }

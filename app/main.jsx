@@ -3,6 +3,7 @@ import React from 'react'
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
+import axios from 'axios'
 
 import store from './store'
 import AppContainer from './components/AppContainer'
@@ -40,6 +41,11 @@ const onAccountEnter = (nextState) => {
   store.dispatch(loadAccount(nextState.params.id))
 }
 
+const onConfirmationEnter = () => {
+  axios.put('/api/cart/reset')
+    .catch(console.error)
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -48,7 +54,7 @@ render(
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={SignUp}/>
         <Route path="/checkout" component={Checkout} />
-        <Route path="/confirmation" component={OrderConfirmation} />
+        <Route path="/confirmation" component={OrderConfirmation} onEnter={onConfirmationEnter} />
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />

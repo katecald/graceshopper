@@ -23,7 +23,7 @@ api
       .then(cart => res.send(cart))
       .catch(next))
   .post('/cart', (req, res, next) => {
-    if (req.session.cart) {
+    if (req.session.cart && req.session.cart.id) {
       Promise.all([Order.findById(req.session.cart.id), Thing.findById(req.body.productId)])
         .spread((order, thing) => {
           order.addThing(thing, { quantity: +req.body.quantity })
@@ -61,6 +61,10 @@ api
     getCart(req)
       .then(cart => sendEmail(req.body, cart))
     res.send('Thank you for shopping with us!')
+  })
+  .put('/cart/reset', (req, res, next) => {
+    req.session.cart.id = undefined
+    res.send('new cart on session')
   })
   .get('/account/:id', (req, res, next) => {
     Order.findAll({ 

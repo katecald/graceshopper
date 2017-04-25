@@ -11,7 +11,8 @@ const rootReducer = combineReducers({
   cart: require('./CartReducer').default,
   products: require('./ProductsReducer').default,
   product: require('./ProductReducer').default,
-  cartQuantity: require('./QuantityReducer').default
+  cartQuantity: require('./QuantityReducer').default,
+  account: require('./AccountReducer').default
 })
 
 export default rootReducer

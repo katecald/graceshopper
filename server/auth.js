@@ -1,8 +1,9 @@
-const app = require('APP'), {env} = app
+const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
+const Promise = require('bluebird')
 
-const {User, OAuth} = require('APP/db')
+const { User, OAuth, Order } = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -97,7 +98,7 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
-    User.findOne({where: {email}})
+    User.findOne({ where: { email } })
       .then(user => {
         if (!user) {
           debug('authenticate user(email: "%s") did fail: no such user', email)
@@ -120,19 +121,33 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/login/local'
+  , passport.authenticate('local')
+  , function (req, res, next) {
+    // Associate now logged in user with current cart order (if exists)
+    if(req.session.cart) {
+      Promise.all([Order.findById(req.session.cart.id), User.findById(req.user.id)])
+        .spread((order, user) => {
+          order.setUser(user)
+        })
+        .then(() => {
+          res.send(req.user)
+        })
+        .catch(next)
+    }
+})
 
-// GET requests for OAuth login:
-// Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
-  passport.authenticate(req.params.strategy, {
-    scope: 'email', // You may want to ask for additional OAuth scopes. These are
-                    // provider specific, and let you access additional data (like
-                    // their friends or email), or perform actions on their behalf.
-    successRedirect: '/',
-    // Specify other config here
-  })(req, res, next)
-)
+  // GET requests for OAuth login:
+  // Register this route as a callback URL with OAuth provider
+  auth.get('/login/:strategy', (req, res, next) =>
+    passport.authenticate(req.params.strategy, {
+      scope: 'email', // You may want to ask for additional OAuth scopes. These are
+      // provider specific, and let you access additional data (like
+      // their friends or email), or perform actions on their behalf.
+      successRedirect: '/',
+      // Specify other config here
+    })(req, res, next)
+  )
 
 auth.post('/logout', (req, res) => {
   req.logout()

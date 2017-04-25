@@ -32,11 +32,11 @@ class AppContainer extends Component {
   handleQuantityChange(e) {
     const productId = e.target.id
     const quantity = +e.target.value
-    this.setState({quantity: {[productId]: quantity}})
+    this.setState({ quantity: { [productId]: quantity } })
   }
 
   handleEmailChange(e) {
-    this.setState({confirmationEmailAddress: e.target.value})
+    this.setState({ confirmationEmailAddress: e.target.value })
   }
 
   handleCheckout(e) {
@@ -45,11 +45,12 @@ class AppContainer extends Component {
       email: this.state.confirmationEmailAddress,
       name: e.target.formName.value,
       address: e.target.formStreet.value + '\n'
-        + e.target.formCity.value + ', '
-        + e.target.formSelectState.value + ' '
-        + e.target.formZip.value,
+      + e.target.formCity.value + ', '
+      + e.target.formSelectState.value + ' '
+      + e.target.formZip.value,
       phone: e.target.formPhone.value
     })
+      .then(browserHistory.replace('/confirmation'))
       .catch(console.error)
   }
 

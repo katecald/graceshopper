@@ -9,13 +9,13 @@ const Navbar = (props) => {
 
                 <div className="navbar-header">
 
-                    <Link to='/' className="navbar-brand">Holiday Helper</Link>
+                    <Link to='/' className="navbar-brand nav-links">Holiday Helper</Link>
                 </div>
 
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     {props.user
                         ? <ul className="nav navbar-nav navbar-left">
-                            <li><Link>{`Hello, ${props.user.name}!`}</Link></li>
+                            <li className='nav-links'><Link>{`Hello, ${props.user.name}!`}</Link></li>
                             <li><Link to="/#">My Account</Link></li>
                             <li><Link to="/#">Sign Out</Link></li>
                         </ul>

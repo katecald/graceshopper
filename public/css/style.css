@@ -28,5 +28,24 @@
 }
 
 .formEmail, .formPassword {
-  width: 500px; 
+  width: 500px;
+}
+
+.productsTitle {
+  font-family: 'Lily Script One', cursive;
+  font-size: 500%;
+  text-align: center;
+}
+
+.productsSub {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.navbar {
+  background-color: #5bc0de;
 }

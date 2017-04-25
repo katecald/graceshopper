@@ -6,8 +6,8 @@ const Products = (props) => {
   return (
     <div>
       <div>
-        <h1>Holiday Helper</h1>
-        <h3>Because holidays don't need to be awful.</h3>
+        <h1 className='productsTitle'>Holiday Helper</h1>
+        <h3 className='productsSub'>Because holidays don't need to be awful.</h3>
       </div>
       {
         props.products.map(product => {

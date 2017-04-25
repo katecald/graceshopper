@@ -5,7 +5,7 @@ const renderCart = (cart) => {
   let orderTotal = 0
   let order = cart.reduce((str, product) => {
     orderTotal += product.price/100 * product.line_item.quantity
-    return str + ` ${product.name} Package, $${product.price/100}, Quantity: ${product.line_item.quantity}<br/>`
+    return str + `${product.name} Package, $${product.price/100}, Quantity: ${product.line_item.quantity}<br/>`
   }, '')
   return order + `Order total: $${orderTotal}<br/>`
 }
@@ -30,7 +30,7 @@ const sendEmail = (confirmationInfo, cart) => {
     // plain text body
     text: `Congrats, ${confirmationInfo.name}! You just placed the best order of your life.
       \n${renderCart(cart).replace(/<br\/>/g, '\n')}\n
-      \nYour awesome order will be shipped to:
+      \nYour awesome order will be delivered to:
       \n${confirmationInfo.address}\n
       \nIf we have any questions, we will call you at ${confirmationInfo.phone}.\n
       \nWith love,

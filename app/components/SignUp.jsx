@@ -1,9 +1,31 @@
 import React from 'react'
+import axios from 'axios'
+import { browserHistory } from 'react-router'
+import { login } from 'APP/app/reducers/auth'
+import { connect } from 'react-redux'
 
-export const SignUp = (props) => (
+export const SignUp = (props) => {
+
+  const handleSignup = (e) => {
+    e.preventDefault()
+    const email = e.target.email.value, password = e.target.password.value
+    const newUser = {
+      name: e.target.name.value,
+      email: email,
+      password: password
+    }
+    axios.post('api/users', newUser)
+    .then(() => {
+      props.login(email, password)
+    })
+    .then(browserHistory.replace('/products'))
+    .catch(console.error)
+  }
+
+  return (
   <div id='signup'>
     <h1>Sign Up</h1>
-    <form onSubmit={props.handleSignup}>
+    <form onSubmit={handleSignup}>
       <div className="form-group">
         <label htmlFor="formName">Name</label>
         <input type="text" name="name" className="form-control" className="formName" placeholder="Enter full name"/>
@@ -20,5 +42,9 @@ export const SignUp = (props) => (
     </form>
   </div>
 )
+}
 
-export default SignUp
+export default connect(
+  state => ({}),
+  { login },
+)(SignUp)

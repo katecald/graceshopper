@@ -2,12 +2,12 @@
 const { Thing, Order, Cart, LineItem } = require('APP/db')
 const api = module.exports = require('express').Router()
 const Promise = require('bluebird')
+const sendEmail = require('APP/server/email')
 
 api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
-  .use('/email', require('./email'))
   .get('/products', (req, res, next) => {
     Thing.findAll({})
       .then(products => res.send(products))
@@ -57,6 +57,11 @@ api
     .then(cart => res.send(cart))
     .catch(next)    
   })
+  .post('/cart/buy', (req, res, next) => {
+    getCart(req)
+      .then(cart => sendEmail(req.body, cart))
+    res.send('Thank you for shopping with us!')
+  })
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
@@ -65,7 +70,6 @@ function getCart(req) {
   if (!req.session.cart || !req.session.cart.id) {
     return Promise.resolve([]);
   }
-
   return Order.findAll({ 
     where: { 
       id: req.session.cart.id 

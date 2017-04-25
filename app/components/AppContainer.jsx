@@ -41,7 +41,7 @@ class AppContainer extends Component {
 
   handleCheckout(e) {
     e.preventDefault()
-    axios.post('api/email', {
+    axios.post('api/cart/buy', {
       email: this.state.confirmationEmailAddress,
       name: e.target.formName.value,
       address: e.target.formStreet.value + '\n'

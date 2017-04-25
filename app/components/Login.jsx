@@ -1,9 +1,12 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 
 export const Login = ({ login }) => {
   function handleLogin(e) {
     e.preventDefault()
     login(e.target.email.value, e.target.password.value)
+    .then(browserHistory.replace('/products'))
+    .catch(console.error)
   }
 
   return (<div id='login'>

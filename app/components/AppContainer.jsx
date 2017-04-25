@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {browserHistory} from 'react-router'
+import { browserHistory } from 'react-router'
 import axios from 'axios'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
@@ -56,11 +56,12 @@ class AppContainer extends Component {
   handleSignup(e) {
     e.preventDefault()
     const newUser = {
-      name: e.target.name.value, 
-      email: e.target.email.value, 
+      name: e.target.name.value,
+      email: e.target.email.value,
       password: e.target.password.value
     }
     axios.post('api/users', newUser)
+    .then(browserHistory.replace('/products'))
     .catch(console.error)
   }
 
@@ -84,7 +85,7 @@ class AppContainer extends Component {
                 handleClick: this.handleClick,
                 handleQuantityChange: this.handleQuantityChange,
                 handleCheckout: this.handleCheckout,
-                handleEmailChange: this.handleEmailChange, 
+                handleEmailChange: this.handleEmailChange,
                 handleSignup: this.handleSignup,
                 handleDelete: this.handleDelete
               },

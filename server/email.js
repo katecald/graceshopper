@@ -38,7 +38,7 @@ const sendEmail = (confirmationInfo, cart) => {
     // html body
     html: `<p>Congrats, ${confirmationInfo.name}! You just placed the best order of your life.</p>
       <p>${renderCart(cart)}</p>
-      <p>Your awesome order will be shipped to:</p>
+      <p>Your awesome order will be delivered to:</p>
       <p>${confirmationInfo.address}</p>
       <p>If we have any questions, we will call you at ${confirmationInfo.phone}.</p>
       <p>With love,</p>

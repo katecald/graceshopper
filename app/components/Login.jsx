@@ -4,7 +4,6 @@ import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
 const Login = (props) => {
-  console.log(props)
   function handleLogin(e) {
     e.preventDefault()
     props.login(e.target.email.value, e.target.password.value)

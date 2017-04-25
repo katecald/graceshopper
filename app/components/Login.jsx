@@ -1,12 +1,13 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
+import { login } from 'APP/app/reducers/auth'
+import { connect } from 'react-redux'
 
-export const Login = ({ login }) => {
+const Login = (props) => {
+  console.log(props)
   function handleLogin(e) {
     e.preventDefault()
-    login(e.target.email.value, e.target.password.value)
-    .then(browserHistory.replace('/products'))
-    .catch(console.error)
+    props.login(e.target.email.value, e.target.password.value)
   }
 
   return (<div id='login'>
@@ -26,10 +27,8 @@ export const Login = ({ login }) => {
   )
 }
 
-import { login } from 'APP/app/reducers/auth'
-import { connect } from 'react-redux'
+const mapState = ({auth}) => ({auth})
 
 export default connect(
-  state => ({}),
-  { login },
+  mapState, {login}
 )(Login)

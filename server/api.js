@@ -62,6 +62,18 @@ api
       .then(cart => sendEmail(req.body, cart))
     res.send('Thank you for shopping with us!')
   })
+  .get('/account/:id', (req, res, next) => {
+    Order.findAll({ 
+      where: {
+        user_id: req.params.id 
+      }, 
+      include: [Thing, LineItem]
+    })
+    .then(orders => {
+      res.send(orders)
+    })
+    .catch(next)
+  })
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

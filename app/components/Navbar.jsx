@@ -16,7 +16,7 @@ const Navbar = (props) => {
                     {props.user
                         ? <ul className="nav navbar-nav navbar-left">
                             <li><Link>{`Hello, ${props.user.name}!`}</Link></li>
-                            <li><Link to="/#">My Account</Link></li>
+                            <li><Link to="/account">My Account</Link></li>
                             <li><Link to="/#">Sign Out</Link></li>
                         </ul>
                         : <ul className="nav navbar-nav navbar-left">

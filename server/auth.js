@@ -1,8 +1,8 @@
-const app = require('APP'), {env} = app
+const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
-const {User, OAuth} = require('APP/db')
+const { User, OAuth } = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -97,7 +97,7 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
-    User.findOne({where: {email}})
+    User.findOne({ where: { email } })
       .then(user => {
         if (!user) {
           debug('authenticate user(email: "%s") did fail: no such user', email)
@@ -120,23 +120,36 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/login/local', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/'
+  })
+  .then(() => {
+    if(req.session.cart) {
+      Order.findById({
+        where: {
+          id: req.session.cart.id
+        }
+      })
+      .then(order => order.setUser(req.user))
+    
+)})
 
-// GET requests for OAuth login:
-// Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
-  passport.authenticate(req.params.strategy, {
-    scope: 'email', // You may want to ask for additional OAuth scopes. These are
-                    // provider specific, and let you access additional data (like
-                    // their friends or email), or perform actions on their behalf.
-    successRedirect: '/',
-    // Specify other config here
-  })(req, res, next)
-)
+  // GET requests for OAuth login:
+  // Register this route as a callback URL with OAuth provider
+  auth.get('/login/:strategy', (req, res, next) =>
+    passport.authenticate(req.params.strategy, {
+      scope: 'email', // You may want to ask for additional OAuth scopes. These are
+      // provider specific, and let you access additional data (like
+      // their friends or email), or perform actions on their behalf.
+      successRedirect: '/',
+      // Specify other config here
+    })(req, res, next)
+  )
 
-auth.post('/logout', (req, res) => {
-  req.logout()
-  res.redirect('/api/auth/whoami')
-})
+  auth.post('/logout', (req, res) => {
+    req.logout()
+    res.redirect('/api/auth/whoami')
+  })
 
-module.exports = auth
+  module.exports = auth

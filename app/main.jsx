@@ -11,6 +11,7 @@ import Product from './components/Product'
 import Navbar from './components/Navbar'
 import Checkout from './components/Checkout'
 import Cart from './components/Cart'
+import OrderHistory from './components/OrderHistory'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import WhoAmI from './components/WhoAmI'
@@ -19,6 +20,7 @@ import NotFound from './components/NotFound'
 import {loadProducts} from 'APP/app/reducers/ProductsReducer'
 import {loadProduct} from 'APP/app/reducers/ProductReducer'
 import {getCart} from 'APP/app/reducers/CartReducer'
+import {loadAccount} from 'APP/app/reducers/AccountReducer'
 
 
 const onProductsEnter = () => {
@@ -33,6 +35,10 @@ const onCartEnter = () => {
   store.dispatch(getCart())
 }
 
+const onAccountEnter = () => {
+  store.dispatch(loadAccount())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -44,6 +50,7 @@ render(
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
+        <Route path="/account" component={OrderHistory} onEnter={onAccountEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

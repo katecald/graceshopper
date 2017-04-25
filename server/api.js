@@ -62,6 +62,20 @@ api
       .then(cart => sendEmail(req.body, cart))
     res.send('Thank you for shopping with us!')
   })
+  .get('/account', (req, res, next) => {
+    console.log("/ACCOUNT")
+
+    Order.findAll({ 
+      where: {
+        user_id: req.body.userId 
+      }, 
+      include: [Thing, LineItem]
+  })
+    .then(orders => {
+      console.log("ORDERS from account", orders)
+      res.send(orders)
+    })
+  })
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

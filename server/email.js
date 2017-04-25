@@ -1,14 +1,11 @@
 const nodemailer = require('nodemailer')
 const secret = require('../.secrets')
 
-//quantities not found (undefined)... using previousDataValues?
-//<br> needs to be changed to /n to be compatible w/ plain text body render on ln 35
 const renderCart = (cart) => {
   let orderTotal = 0
   let order = cart.reduce((str, product) => {
-    console.log("current quantity: ", product.quantity)
-    orderTotal += product.price/100 * product.quantity
-    return str + ` ${product.name} Package, $${product.price/100}, Quantity: ${product.quantity}<br/>`
+    orderTotal += product.price/100 * product.line_item.quantity
+    return str + ` ${product.name} Package, $${product.price/100}, Quantity: ${product.line_item.quantity}<br/>`
   }, '')
   return order + `Order total: $${orderTotal}<br/>`
 }
@@ -32,7 +29,7 @@ const sendEmail = (confirmationInfo, cart) => {
     subject: 'Order Confirmation', 
     // plain text body
     text: `Congrats, ${confirmationInfo.name}! You just placed the best order of your life.
-      \n${renderCart(cart)}\n
+      \n${renderCart(cart).replace(/<br\/>/g, '\n')}\n
       \nYour awesome order will be shipped to:
       \n${confirmationInfo.address}\n
       \nIf we have any questions, we will call you at ${confirmationInfo.phone}.\n

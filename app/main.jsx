@@ -21,7 +21,7 @@ import {loadProducts} from 'APP/app/reducers/ProductsReducer'
 import {loadProduct} from 'APP/app/reducers/ProductReducer'
 import {getCart} from 'APP/app/reducers/CartReducer'
 import {loadAccount} from 'APP/app/reducers/AccountReducer'
-
+import {whoami} from 'APP/app/reducers/auth'
 
 const onProductsEnter = () => {
   store.dispatch(loadProducts())
@@ -35,8 +35,8 @@ const onCartEnter = () => {
   store.dispatch(getCart())
 }
 
-const onAccountEnter = () => {
-  store.dispatch(loadAccount())
+const onAccountEnter = (nextState) => {
+  store.dispatch(loadAccount(nextState.params.id))
 }
 
 render(
@@ -50,7 +50,7 @@ render(
         <Route path='/products/:id' component={Product} onEnter={onProductEnter} />
         <Route path="/products" component={Products} onEnter={onProductsEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
-        <Route path="/account" component={OrderHistory} onEnter={onAccountEnter} />
+        <Route path="/account/:id" component={OrderHistory} onEnter={onAccountEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

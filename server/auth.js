@@ -1,8 +1,9 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
+const Promise = require('bluebird')
 
-const { User, OAuth } = require('APP/db')
+const { User, OAuth, Order } = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -120,20 +121,21 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/'
-  })
-  .then(() => {
+auth.post('/login/local'
+  , passport.authenticate('local')
+  , function (req, res, next) {
+    // Associate now logged in user with current cart order (if exists)
     if(req.session.cart) {
-      Order.findById({
-        where: {
-          id: req.session.cart.id
-        }
-      })
-      .then(order => order.setUser(req.user))
-    
-)})
+      Promise.all([Order.findById(req.session.cart.id), User.findById(req.user.id)])
+        .spread((order, user) => {
+          order.setUser(user)
+        })
+        .then(() => {
+          res.send(req.user)
+        })
+        .catch(next)
+    }
+})
 
   // GET requests for OAuth login:
   // Register this route as a callback URL with OAuth provider

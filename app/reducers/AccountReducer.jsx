@@ -16,9 +16,9 @@ const gotOrders = (res) => {
 
 export const loadAccount = (userId) => {
   return dispatch =>
-    axios.get('/api/account', {userId})
-        .then(dispatch(gotOrders()))
-        .catch(console.error)
+    axios.get(`/api/account/${userId}`)
+      .then((orders) => dispatch(gotOrders(orders)))
+      .catch(console.error)
 }
 
 const accountReducer = (state = [], action) => {

@@ -6,8 +6,8 @@ const Products = (props) => {
   return (
     <div>
       <div>
-        <h1>Holiday Helper</h1>
-        <h3>Because holidays don't need to be awful.</h3>
+        <h1 className='productsTitle'>Holiday Helper</h1>
+        <h3 className='productsSub'>Because holidays don't need to be awful.</h3>
       </div>
       {
         props.products.map(product => {
@@ -22,15 +22,23 @@ const Products = (props) => {
                   ${product.price / 100}
                 </h3>
               </Link>
+              <table>
+              <tr>
+              <td>
               <button className='btn btn-info' value={product.id} onClick={props.handleClick}>
                 Add To Cart
               </button>
+              </td>
+              <td className='quantity'>
               <label htmlFor="quantity">Qty</label>
               <select id={product.id} onChange={props.handleQuantityChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
+              </td>
+              </tr>
+              </table>
             </div>
           )
         })

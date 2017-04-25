@@ -8,7 +8,7 @@
   margin-top: 50px;
 }
 
-#checkout {
+#checkout, #login {
   width: 600px;
 }
 
@@ -27,8 +27,31 @@
   margin: 0 auto;
 }
 
-.formEmail, .formPassword {
-  width: 500px; 
+.formEmail, .formPassword, .formName {
+  width: 500px;
+}
+
+.productsTitle {
+  font-family: 'Lily Script One', cursive;
+  font-size: 500%;
+  text-align: center;
+}
+
+.productsSub {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.navbar {
+  background-color: #95cbdb;
+}
+
+.quantity {
+  padding-left: 20px;
 }
 
 #order-total {

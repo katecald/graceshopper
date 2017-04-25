@@ -13,11 +13,11 @@ const Login = (props) => {
     <h1>Log In</h1>
     <form onSubmit={handleLogin}>
       <div className="form-group">
-        <label htmlFor="formName">Email Address</label>
+        <label htmlFor="formName">Email Address</label><br/>
         <input name="email" type="email" className="form-control" className="formEmail" placeholder="Enter email" />
       </div>
       <div className="form-group">
-        <label htmlFor="formEmail">Password</label>
+        <label htmlFor="formEmail">Password</label><br/>
         <input name="password" type="password" className="form-control" className="formPassword" placeholder="Enter password" />
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>

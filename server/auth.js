@@ -136,7 +136,7 @@ auth.get('/login/:strategy', (req, res, next) =>
 
 auth.post('/logout', (req, res) => {
   req.logout()
-  res.redirect('/api/auth/whoami')
+  res.redirect('/whoami')
 })
 
 module.exports = auth

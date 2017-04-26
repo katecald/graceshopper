@@ -75,8 +75,8 @@ module.exports = db => {
     passport
   }) => {
     const undefinedKeys = Object.keys(config)
-          .map(k => config[k])
-          .filter(value => typeof value === 'undefined')
+      .map(k => config[k])
+      .filter(value => typeof value === 'undefined')
     if (undefinedKeys.length) {
       for (const key in config) {
         if (!config[key]) debug('provider:%s: needs environment var %s', provider, key)

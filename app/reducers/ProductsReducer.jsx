@@ -11,6 +11,7 @@ const getProducts = (res) => {
   }
 }
 
+// ACTION CREATORS
 export const loadProducts = () =>
   axios.get('/api/products')
     .then(getProducts)

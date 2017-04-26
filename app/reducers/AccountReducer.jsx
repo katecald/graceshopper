@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-// Constants
-
+// CONSTANTS
 export const GOT_ORDERS = 'GOT_ORDERS'
 
 // ACTIONS
@@ -12,8 +11,7 @@ const gotOrders = (res) => {
   }
 }
 
-//Action creators
-
+// ACTION CREATORS
 export const loadAccount = (userId) => {
   return dispatch =>
     axios.get(`/api/account/${userId}`)
@@ -21,6 +19,7 @@ export const loadAccount = (userId) => {
       .catch(console.error)
 }
 
+// REDUCER
 const accountReducer = (state = [], action) => {
    switch(action.type) {
       case GOT_ORDERS:

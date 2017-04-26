@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import {render} from 'react-dom'
-import {connect, Provider} from 'react-redux'
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
+import { render } from 'react-dom'
+import { connect, Provider } from 'react-redux'
 import axios from 'axios'
 
 import store from './store'
@@ -19,11 +19,11 @@ import SignUp from './components/SignUp'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
-import {loadProducts} from 'APP/app/reducers/ProductsReducer'
-import {loadProduct} from 'APP/app/reducers/ProductReducer'
-import {getCart} from 'APP/app/reducers/CartReducer'
-import {loadAccount} from 'APP/app/reducers/AccountReducer'
-import {whoami} from 'APP/app/reducers/auth'
+import { loadProducts } from 'APP/app/reducers/ProductsReducer'
+import { loadProduct } from 'APP/app/reducers/ProductReducer'
+import { getCart } from 'APP/app/reducers/CartReducer'
+import { loadAccount } from 'APP/app/reducers/AccountReducer'
+import { whoami } from 'APP/app/reducers/auth'
 
 const onProductsEnter = () => {
   store.dispatch(loadProducts())

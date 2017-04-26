@@ -22,15 +22,14 @@ const deletedFromCart = (res) => {
 // ACTION CREATORS
 export const addToCart = (productId, quantity) => {
   return dispatch =>
-    axios.post('/api/cart', {productId, quantity})
-      // TODO: Maybe make POST /api/cart respond with the cart?
+    axios.post('/api/cart', { productId, quantity })
       .then(() => dispatch(getCart()))
       .catch(console.error)
 }
 
 export const deleteFromCart = (productId) => {
   return dispatch =>
-    axios.put('api/cart', {productId})
+    axios.put('api/cart', { productId })
       .then(res => dispatch(gotCart(res)))
       .catch(console.error)
 }

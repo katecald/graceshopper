@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING} = require('sequelize')
+const { STRING } = require('sequelize')
 
 module.exports = db => db.define('favorites')
 
